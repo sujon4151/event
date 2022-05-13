@@ -134,39 +134,57 @@
                         </a>
                     </li>
                     <!-- Apps & Pages -->
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">STUDENT &amp;
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">PLAYERS &amp;
                             EVENT INFO</span>
                     </li>
 
                     <li class="menu-item">
-                        <a href="{{ route('student.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user-check"></i>
-                            <div data-i18n="Manage Student">Manage Student</div>
-                        </a>
-                    </li>
-
-
-                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-detail"></i>
-                            <div data-i18n="Event Management">Event Management</div>
+                            <i class="menu-icon tf-icons bx bx-user-check"></i>
+                            <div data-i18n="PLAYERS">PLAYERS</div>
                         </a>
                         <ul class="menu-sub">
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div data-i18n="Add Event">Add Event</div>
+                                <a href="{{ route('student.create') }}" class="menu-link">
+                                    <div data-i18n="Add Athlete">Add Athlete </div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
-                                    <div data-i18n="Ticket">Ticket</div>
+                                <a href="{{ route('student.index') }}" class="menu-link">
+                                    <div data-i18n="Athlete List">Athlete List</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-detail"></i>
+                            <div data-i18n="EVENTS">EVENTS</div>
+                        </a>
+                        <ul class="menu-sub">
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Add Event">Add Event </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Event List">Event List</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Paid User">Paid User</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     </li>
 
                     <!-- Misc -->
@@ -478,10 +496,10 @@
     <!-- Row Group JS -->
     <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
     <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
-    <!-- Form Validation -->
+    {{-- <!-- Form Validation -->
     <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
     <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
+    <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script> --}}
 
     <!-- Row Group JS -->
     <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>

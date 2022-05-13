@@ -10,20 +10,27 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-
+                <div>
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                </div>
 
                 <div class="card">
-                    <h5 class="card-header">Student List
+                    <h5 class="card-header">Athlete List
                         <span style="float: right;"><a href="{{ route('student.create') }}"
                                 class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add
-                                Student</a></span>
+                                Athlete</a></span>
                     </h5>
                     <hr>
                     <div class="table-responsive text-nowrap">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Student Name</th>
+                                    <th>SL</th>
+                                    <th>Player Name</th>
                                     <th>School Name</th>
                                     <th>School Level</th>
                                     <th>Position</th>
@@ -31,51 +38,39 @@
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                <tr>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Sujon</strong></td>
-                                    <td>Albert Cook</td>
-                                    <td>
-                                        Test
-                                    </td>
-                                    <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-trash me-1"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($students as $student)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <strong>{{ $student->name }}</strong>
+                                        </td>
+                                        <td>{{ $student->school_name }}</td>
+                                        <td>
+                                            <?php if ($student->school_level == 1) {
+                                                echo '<span class="badge bg-label-primary me-1">High School</span> ';
+                                            } elseif ($student->school_level == 2) {
+                                                echo '<span class="badge bg-label-info me-1">4 year college</span> ';
+                                            } elseif ($student->school_level == 3) {
+                                                echo '<span class="badge bg-label-success me-1">2year/JUCO</span> ';
+                                            } elseif ($student->school_level == 4) {
+                                                echo '<span class="badge bg-label-warning me-1">Free agent/Post School</span> ';
+                                            } ?>
+                                        </td>
+                                        <td>{{ $student->position }}</td>
+                                        <td>
+                                            <form action="{{ route('student.destroy', $student->id) }}" method="post">
+                                                <a href="{{ route('student.edit', $student->id) }}" type="button"
+                                                    class="btn btn-sm btn-outline-primary">Edit</a>
 
-                                <tr>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Sujon</strong></td>
-                                    <td>Albert Cook</td>
-                                    <td>
-                                        Test
-                                    </td>
-                                    <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a class="dropdown-item" href="javascript:void(0);"><i
-                                                        class="bx bx-trash me-1"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"> Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
 
                             </tbody>
                         </table>
