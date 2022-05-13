@@ -205,4 +205,6 @@
 
     </div>
     <!-- Content wrapper -->
+    <!-- Page JS -->
+    <script src="admin/assets/js/form-layouts.js"></script>
 @endsection

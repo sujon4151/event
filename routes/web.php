@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\EventController;
+use App\Http\Controllers\Backend\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('student', StudentController::class);
 Route::resource('event', EventController::class);
+Route::resource('news', NewsController::class);

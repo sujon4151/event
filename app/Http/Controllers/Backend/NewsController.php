@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Events;
+use App\Models\News;
 
-class EventController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Events::all();
-        return view('backend.event.index', compact('events'));
+        $news = News::all();
+        return view('backend.news.index', compact('news'));
     }
 
     /**
@@ -26,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('backend.event.create');
+        return view('backend.news.create');
     }
 
     /**
@@ -37,15 +37,24 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        Events::create([
-            'name' => $request->name,
-            'date' => $request->date,
-            'price_type' => $request->price_type,
-            'price' => $request->price,
+
+        if (!empty($request->image)) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(public_path('assets/upload/news'), $imageName);
+        }
+
+        News::create([
+            'title' => $request->title,
             'description' => $request->description,
+            'image' => $imageName,
+            'is_featured' => $request->is_featured,
         ]);
 
-        return redirect()->route('event.index')->with('message', 'Event Added Successfully');
+        return redirect()->route('news.index')->with('message', 'News Added Successfully');
     }
 
     /**
@@ -67,8 +76,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = Events::find($id);
-        return view('backend.event.edit', compact('event'));
+        $news = News::find($id);
+        return view('backend.news.edit', compact('news'));
     }
 
     /**
@@ -80,14 +89,13 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Events::where('id', '=', $id)->first();
-        $event->name      = $request['name'];
-        $event->price_type      = $request['price_type'];
-        $event->price      = $request['price'];
-        $event->date      = $request['date'];
-        $event->description = $request['description'];
-        $event->save();
-        return redirect()->route('event.index')->with('message', 'Event Updated Successfully');
+        $news = News::where('id', '=', $id)->first();
+        $news->title      = $request['title'];
+        $news->image      = $request['image'];
+        $news->is_featured = $request['is_featured'];
+        $news->description = $request['description'];
+        $news->save();
+        return redirect()->route('news.index')->with('message', 'News Updated Successfully');
     }
 
     /**
@@ -96,9 +104,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Events $event)
+    public function destroy(News $news)
     {
-        $event->delete();
-        return redirect()->route('event.index')->with('message', 'Event Deleted Successfully');
+        $news->delete();
+        return redirect()->route('news.index')->with('message', 'News Deleted Successfully');
     }
 }

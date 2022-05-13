@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Events extends Model
+class News extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'date',
-        'price_type',
-        'price',
+        'title',
         'description',
+        'image',
     ];
 }

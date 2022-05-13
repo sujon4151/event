@@ -49,6 +49,10 @@
     <link rel="stylesheet"
         href="{{ url('admin/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
     <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+
+    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/quill/typography.css') }}" />
+    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/quill/editor.css') }}" />
+
     <!-- Row Group CSS -->
     <link rel="stylesheet"
         href="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}" />
@@ -167,13 +171,13 @@
                         <ul class="menu-sub">
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('event.create') }}" class="menu-link">
                                     <div data-i18n="Add Event">Add Event </div>
                                 </a>
                             </li>
 
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="{{ route('event.index') }}" class="menu-link">
                                     <div data-i18n="Event List">Event List</div>
                                 </a>
                             </li>
@@ -183,6 +187,29 @@
                                     <div data-i18n="Paid User">Paid User</div>
                                 </a>
                             </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-detail"></i>
+                            <div data-i18n="NEWS">NEWS</div>
+                        </a>
+                        <ul class="menu-sub">
+
+                            <li class="menu-item">
+                                <a href="{{ route('news.create') }}" class="menu-link">
+                                    <div data-i18n="Add News">Add News </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{ route('news.index') }}" class="menu-link">
+                                    <div data-i18n="News List">News List</div>
+                                </a>
+                            </li>
+
+
                         </ul>
                     </li>
                     </li>
@@ -505,6 +532,8 @@
     <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
     <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
 
+    <script src="{{ url('admin/assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ url('admin/assets/vendor/libs/quill/quill.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ url('admin/assets/js/main.js') }}"></script>
 
@@ -512,6 +541,7 @@
     <script src="{{ url('admin/assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ url('admin/assets/js/dashboards-analytics.js') }}"></script>
     <script src="{{ url('admin/assets/js/form-layouts.js') }}"></script>
+    <script src="{{ url('admin/assets/js/forms-editors.js') }}"></script>
 </body>
 
 </html>
