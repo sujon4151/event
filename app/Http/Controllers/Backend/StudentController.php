@@ -13,9 +13,27 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Students::all();
+        // $students = Students::quary();
+        $students = Students::query();
+        if ($request->has('filter')) {
+            if ($request->desc) {
+                $students->orderBy($request->desc, 'DESC');
+            }
+            if ($request->state) {
+                $students->whereRaw('LOWER(`state`) LIKE ? ',[trim(strtolower($request->state)).'%']);
+
+               
+            }
+            if ($request->school_level) {
+                $students->where('school_level',$request->school_level);
+            }
+
+           
+        }
+        $students = $students->paginate(10);
+
         return view('backend.student.index', compact('students'));
     }
 

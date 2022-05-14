@@ -14,18 +14,15 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ url('admin/assets/img/favicon/favicon.ico') }}" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/fonts/boxicons.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/fonts/fontawesome.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/fonts/flag-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ url('admin/assets/vendor/css/rtl/core.css') }}"
@@ -34,42 +31,39 @@
         class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ url('admin/assets/css/demo.css') }}" />
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <script src="{{ asset('admin/assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ asset('/admin/assets/js/config.js') }}"></script>
+    {{-- <script>
+        window.templateCustomizer = new TemplateCustomizer({
+            cssPath: '',
+            themesPath: '',
+            defaultShowDropdownOnHover: {{ $configData['showDropdownOnHover'] }}, // true/false (for horizontal layout only)
+            displayCustomizer: {{ $configData['displayCustomizer'] }},
+            lang: '{{ app()->getLocale() }}',
+            pathResolver: function(path) {
+                var resolvedPaths = {
+                    // Core stylesheets
+                    @foreach (['core'] as $name)
+                        '{{ $name }}.css': '{{ asset(mix("assets/vendor/css{$configData['rtlSupport']}/{$name}.css")) }}',
+                        '{{ $name }}-dark.css': '{{ asset(mix("assets/vendor/css{$configData['rtlSupport']}/{$name}-dark.css")) }}',
+                    @endforeach
 
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet"
-        href="{{ url('admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-    <link rel="stylesheet"
-        href="{{ url('admin/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
-    <link rel="stylesheet"
-        href="{{ url('admin/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
-
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/quill/typography.css') }}" />
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/quill/editor.css') }}" />
-
-    <!-- Row Group CSS -->
-    <link rel="stylesheet"
-        href="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}" />
-    <!-- Form Validation -->
-    <link rel="stylesheet"
-        href="{{ url('admin/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="{{ url('admin/assets/vendor/libs/select2/select2.css') }}" />
-    <!-- Helpers -->
-    <script src="{{ url('admin/assets/vendor/js/helpers.js') }}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{ url('admin/assets/vendor/js/template-customizer.js') }}"></script>
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ url('admin/assets/js/config.js') }}"></script>
+                    // Themes
+                    @foreach (['default', 'bordered', 'semi-dark'] as $name)
+                        'theme-{{ $name }}.css': '{{ asset(mix("assets/vendor/css{$configData['rtlSupport']}/theme-{$name}.css")) }}',
+                        'theme-{{ $name }}-dark.css': '{{ asset(mix("assets/vendor/css{$configData['rtlSupport']}/theme-{$name}-dark.css")) }}',
+                    @endforeach
+                }
+                return resolvedPaths[path] || path;
+            },
+            'controls': <?php echo json_encode($configData['customizerControls']); ?>,
+        });
+    </script> --}}
+    @yield('css')
 </head>
 
 <body>
@@ -79,6 +73,7 @@
             <!-- Menu -->
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
                         <span class="app-brand-logo demo">
@@ -142,20 +137,51 @@
                             EVENT INFO</span>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('leaderboard/*') ? 'open' : '' }}">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-user-check"></i>
+                            <div data-i18n="LEADERBOARD">LEADERBOARD</div>
+                        </a>
+                        <ul class="menu-sub">
+
+                            <li class="menu-item {{ request()->is('leaderboard/1') ? 'active' : '' }}">
+                                <a href="{{ route('leaderboard.index', '1') }}" class="menu-link">
+                                    <div data-i18n="High School">High School </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item {{ request()->is('leaderboard/2') ? 'active' : '' }}">
+                                <a href="{{ route('leaderboard.index', '2') }}" class="menu-link">
+                                    <div data-i18n="4 Year College">4 Year College</div>
+                                </a>
+                            </li>
+                            <li class="menu-item {{ request()->is('leaderboard/3') ? 'active' : '' }}">
+                                <a href="{{ route('leaderboard.index', '3') }}" class="menu-link">
+                                    <div data-i18n="2 Year/JUCO">2 Year/JUCO</div>
+                                </a>
+                            </li>
+                            {{-- <li class="menu-item {{ request()->is('leaderboard/4') ? 'active' : '' }}">
+                                <a href="{{ route('leaderboard.index', '4') }}" class="menu-link">
+                                    <div data-i18n="Free Agent/Post School">Free Agent/Post School</div>
+                                </a>
+                            </li> --}}
+                        </ul>
+
+                    </li>
+                    <li class="menu-item {{ request()->is('student/*')||request()->is('student') ? 'open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-user-check"></i>
                             <div data-i18n="PLAYERS">PLAYERS</div>
                         </a>
                         <ul class="menu-sub">
 
-                            <li class="menu-item">
+                            <li class="menu-item {{Route::currentRouteName()=='student.create'  ? 'active' : '' }}">
                                 <a href="{{ route('student.create') }}" class="menu-link">
                                     <div data-i18n="Add Athlete">Add Athlete </div>
                                 </a>
                             </li>
 
-                            <li class="menu-item">
+                            <li class="menu-item {{Route::currentRouteName()=='student.index'  ? 'active' : '' }}">
                                 <a href="{{ route('student.index') }}" class="menu-link">
                                     <div data-i18n="Athlete List">Athlete List</div>
                                 </a>
@@ -163,20 +189,19 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('event/*') ||request()->is('event') ? 'open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-detail"></i>
                             <div data-i18n="EVENTS">EVENTS</div>
                         </a>
                         <ul class="menu-sub">
-
-                            <li class="menu-item">
-                                <a href="{{ route('event.create') }}" class="menu-link">
+                                <li class="menu-item {{Route::currentRouteName()=='event.create'  ? 'active' : '' }}">
+                                    <a href="{{ route('event.create') }}" class="menu-link">
                                     <div data-i18n="Add Event">Add Event </div>
                                 </a>
                             </li>
 
-                            <li class="menu-item">
+                            <li class="menu-item {{Route::currentRouteName()=='event.index' ? 'active' : '' }}">
                                 <a href="{{ route('event.index') }}" class="menu-link">
                                     <div data-i18n="Event List">Event List</div>
                                 </a>
@@ -190,21 +215,22 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item">
+                    <li class="menu-item {{ request()->is('news/*') || request()->is('news') ? 'open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-detail"></i>
                             <div data-i18n="NEWS">NEWS</div>
                         </a>
                         <ul class="menu-sub">
 
-                            <li class="menu-item">
+                            <li class="menu-item {{ Route::currentRouteName()=='news.create' ? 'active' : '' }}">
                                 <a href="{{ route('news.create') }}" class="menu-link">
                                     <div data-i18n="Add News">Add News </div>
                                 </a>
                             </li>
 
-                            <li class="menu-item">
-                                <a href="{{ route('news.index') }}" class="menu-link">
+                           
+                                <li class="menu-item {{ Route::currentRouteName()=='news.index' ? 'active' : '' }}">
+                                    <a href="{{ route('news.index') }}" class="menu-link">
                                     <div data-i18n="News List">News List</div>
                                 </a>
                             </li>
@@ -451,9 +477,9 @@
                     <div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                         <div class="mb-2 mb-md-0">
                             ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
+                            {{-- <script>
+                                document.write(new Date().getFullYear();
+                            </script> --}}
                             , made with ❤️ by
                             <a href="#" target="_blank" class="footer-link fw-semibold">Microxen Technology</a>
                         </div>
@@ -482,66 +508,18 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ url('admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/libs/i18n/i18n.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/js/menu.js') }}"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="{{ url('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-responsive/datatables.responsive.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-buttons/datatables-buttons.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/jszip/jszip.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/pdfmake/pdfmake.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-buttons/buttons.html5.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-buttons/buttons.print.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/libs/cleavejs/cleave.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/cleavejs/cleave-phone.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/moment/moment.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/i18n/i18n.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+    <script src="{{ asset('/admin/assets/vendor/js/menu.js') }}"></script>
+    @yield('js')
+    <script src="/admin/assets/js/main.js"></script>
 
 
-    <!-- Flat Picker -->
-    <script src="{{ url('admin/assets/vendor/libs/moment/moment.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-    <!-- Row Group JS -->
-    <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
-    {{-- <!-- Form Validation -->
-    <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script> --}}
-
-    <!-- Row Group JS -->
-    <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
-
-    <script src="{{ url('admin/assets/vendor/libs/quill/katex.js') }}"></script>
-    <script src="{{ url('admin/assets/vendor/libs/quill/quill.js') }}"></script>
-    <!-- Main JS -->
-    <script src="{{ url('admin/assets/js/main.js') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ url('admin/assets/js/tables-datatables-basic.js') }}"></script>
-    <script src="{{ url('admin/assets/js/dashboards-analytics.js') }}"></script>
-    <script src="{{ url('admin/assets/js/form-layouts.js') }}"></script>
-    <script src="{{ url('admin/assets/js/forms-editors.js') }}"></script>
 </body>
 
 </html>

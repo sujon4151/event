@@ -40,8 +40,8 @@ class EventController extends Controller
         Events::create([
             'name' => $request->name,
             'date' => $request->date,
-            'price_type' => $request->price_type,
-            'price' => $request->price,
+            'price_type' => json_encode(array_filter($request->price_type)),
+            'price' => json_encode(array_filter($request->price)),
             'description' => $request->description,
         ]);
 
@@ -80,10 +80,11 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Events::where('id', '=', $id)->first();
+       
+        $event = Events::find($id);
         $event->name      = $request['name'];
-        $event->price_type      = $request['price_type'];
-        $event->price      = $request['price'];
+        $event->price_type      = json_encode(array_filter($request->price_type));
+        $event->price      = json_encode(array_filter($request->price));
         $event->date      = $request['date'];
         $event->description = $request['description'];
         $event->save();

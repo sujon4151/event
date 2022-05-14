@@ -1,5 +1,13 @@
 @extends('layouts.main')
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/pickr/pickr-themes.css') }}" />
+@endsection
 @section('content')
     <!-- Content wrapper -->
     <div class="content-wrapper">
@@ -233,4 +241,19 @@
 
     </div>
     <!-- Content wrapper -->
+@endsection
+@section('js')
+    <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/pickr/pickr.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/forms-pickers.js') }}"></script> --}}
+    <script>
+        $('.dob-picker').flatpickr({
+            enableTime: false,
+            dateFormat: 'Y-m-d '
+        });
+    </script>
 @endsection

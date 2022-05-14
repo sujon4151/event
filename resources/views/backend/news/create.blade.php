@@ -1,5 +1,8 @@
 @extends('layouts.main')
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/quill/typography.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/quill/editor.css') }}" />
+@endsection
 @section('content')
     <!-- Content wrapper -->
     <div class="content-wrapper">
@@ -70,6 +73,8 @@
                                             <div id="snow-editor">
 
                                             </div>
+                                            <input type="hidden" id="detail" name="description"
+                                            value="">
                                         </div>
                                     </div>
                                 </div>
@@ -93,5 +98,22 @@
     </div>
     <!-- Content wrapper -->
     <!-- Page JS -->
-    <script src="admin/assets/js/form-layouts.js"></script>
+@endsection
+@section('js')
+    <script src="{{ asset('admin/assets/vendor/libs/quill/katex.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/quill/quill.js') }}"></script>
+    <script>
+        const snowEditor = new Quill('#snow-editor', {
+            bounds: '#snow-editor',
+            modules: {
+                formula: true,
+                toolbar: '#snow-toolbar'
+            },
+            theme: 'snow'
+        });
+        snowEditor.on('text-change', function(delta, oldDelta, source) {
+            console.log(snowEditor.container.firstChild.innerHTML)
+            $('#detail').val(snowEditor.container.firstChild.innerHTML);
+        });
+    </script>
 @endsection

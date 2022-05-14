@@ -24,7 +24,49 @@
                                 class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add
                                 Athlete</a></span>
                     </h5>
+
+                    <div class="card-header">
+                        <form action="{{ route('student.index') }}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label" for="school_level">School Level</label>
+                                    <select id="school_level" name="school_level" class="select2 form-select"
+                                        data-allow-clear="true">
+                                        <option value="">Select School</option>
+                                        <option value="1">High School</option>
+                                        <option value="2">4 Year College</option>
+                                        <option value="3">2 Year/JUCO</option>
+                                        <option value="4">Free Agent/Post School </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="desc">Filter High to Low
+                                    </label>
+                                    <select id="desc" name="desc" class="select2 form-select" data-allow-clear="true">
+                                        <option value="">Select Type</option>
+                                        <option value="top_pitch_velocity"
+                                            {{ request()->desc ?? request()->desc == 'top_pitch_velocity' ? 'selected' : '' }}>
+                                            TOP PITCH VELOCITY</option>
+                                        <option value="sprit_time"
+                                            {{ request()->desc ?? request()->desc == 'sprit_time' ? 'selected' : '' }}>
+                                            SPRINT TIME</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label" for="state">State</label>
+                                    <input type="text" name="state" id="state" class="form-control" placeholder="state" />
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" name="filter"
+                                        class="btn rounded-pill btn-primary mt-4">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <hr>
+
+
                     <div class="table-responsive text-nowrap">
                         <table class="table">
                             <thead>
@@ -33,7 +75,17 @@
                                     <th>Player Name</th>
                                     <th>School Name</th>
                                     <th>School Level</th>
-                                    <th>Position</th>
+                                    @if (request()->desc == 'top_pitch_velocity')
+                                    <th>Top Velocity</th>
+                                    @elseif (request()->desc == 'sprit_time')
+                                    <th>SPRINT TIME</th>
+                                    @else
+                                    <th>Top Velocity</th>
+                                    <th>Top Velocity</th>
+                                    @endif
+
+
+                                    <th>State</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -56,7 +108,18 @@
                                                 echo '<span class="badge bg-label-warning me-1">Free agent/Post School</span> ';
                                             } ?>
                                         </td>
-                                        <td>{{ $student->position }}</td>
+                                        @if (request()->desc == 'top_pitch_velocity')
+                                        <td>{{ $student->top_pitch_velocity }}</td>
+                                        @elseif (request()->desc == 'sprit_time')
+                                        <td>{{ $student->sprit_time }}</td> 
+                                        @else
+                                        <td>{{ $student->top_pitch_velocity }}</td>
+                                        <td>{{ $student->sprit_time }}</td> 
+                                        @endif
+                                      
+
+
+                                        <td>{{ $student->state }}</td>
                                         <td>
                                             <form action="{{ route('student.destroy', $student->id) }}" method="post">
                                                 <a href="{{ route('student.edit', $student->id) }}" type="button"

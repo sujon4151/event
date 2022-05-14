@@ -3,582 +3,592 @@
     {
       "name": "Dashboard Analytics",
       "icon": "bx-home-circle",
-      "url": "index.html"
+      "url": "/"
     },
     {
       "name": "Dashboard eCommerce",
       "icon": "bx-home-circle",
-      "url": "dashboards-ecommerce.html"
+      "url": "dashboards/ecommerce"
     },
     {
       "name": "Layout Without menu",
       "icon": "bx-layout",
-      "url": "layouts-without-menu.html"
+      "url": "layouts/without-menu"
+    },
+    {
+      "name": "Layout Without navbar",
+      "icon": "bx-layout",
+      "url": "layouts/without-navbar"
     },
     {
       "name": "Layout Fluid",
       "icon": "bx-layout",
-      "url": "layouts-fluid.html"
+      "url": "layouts/fluid"
     },
     {
       "name": "Layout Container",
       "icon": "bx-layout",
-      "url": "layouts-container.html"
+      "url": "layouts/container"
     },
     {
       "name": "Layout Blank",
       "icon": "bx-layout",
-      "url": "layouts-blank.html"
+      "url": "layouts/blank"
+    },
+    {
+      "name": "User Management",
+      "icon": "bx-user",
+      "url": "laravel/user-management"
     },
     {
       "name": "Calendar",
       "icon": "bx-calendar",
-      "url": "app-calendar.html"
+      "url": "app/calendar"
     },
     {
       "name": "User List",
       "icon": "bx-list-ol",
-      "url": "app-user-list.html"
+      "url": "app/user/list"
     },
     {
       "name": "User View - Account",
       "icon": "bx-user",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "User View - Security",
       "icon": "bx-shield",
-      "url": "app-user-view-security.html"
+      "url": "app/user/view/security"
     },
     {
       "name": "User View - Billing & Plans",
       "icon": "bx-file",
-      "url": "app-user-view-billing.html"
+      "url": "app/user/view/billing"
     },
     {
       "name": "User View - Notifications",
       "icon": "bx-notification",
-      "url": "app-user-view-notifications.html"
+      "url": "app/user/view/notifications"
     },
     {
       "name": "User View - Connections",
       "icon": "bxl-google",
-      "url": "app-user-view-connections.html"
+      "url": "app/user/view/connections"
     },
     {
       "name": "Roles",
       "icon": "bx-shield-quarter",
-      "url": "app-access-roles.html"
+      "url": "app/access-roles"
     },
     {
       "name": "Permission",
       "icon": "bx-block",
-      "url": "app-access-permission.html"
+      "url": "app/access-permission"
     },
     {
       "name": "Invoice List",
       "icon": "bx-list-ol",
-      "url": "app-invoice-list.html"
+      "url": "app/invoice/list"
     },
     {
       "name": "Invoice Preview",
       "icon": "bx-file",
-      "url": "app-invoice-preview.html"
+      "url": "app/invoice/preview"
     },
     {
       "name": "Invoice Edit",
       "icon": "bx-pencil",
-      "url": "app-invoice-edit.html"
+      "url": "app/invoice/edit"
     },
     {
       "name": "Invoice Add",
       "icon": "bx-user-plus",
-      "url": "app-invoice-add.html"
+      "url": "app/invoice/add"
     },
     {
       "name": "User Profile",
       "icon": "bx-user-circle",
-      "url": "pages-profile-user.html"
+      "url": "pages/profile-user"
     },
     {
       "name": "User Profile - Teams",
       "icon": "bx-group",
-      "url": "pages-profile-teams.html"
+      "url": "pages/profile-teams"
     },
     {
       "name": "User Profile - Projects",
       "icon": "bx-grid-alt",
-      "url": "pages-profile-projects.html"
+      "url": "pages/profile-projects"
     },
     {
       "name": "User Profile - Connections",
       "icon": "bx-link-alt",
-      "url": "pages-profile-connections.html"
+      "url": "pages/profile-connections"
     },
     {
       "name": "Account Settings - Account",
       "icon": "bx-user",
-      "url": "pages-account-settings-account.html"
+      "url": "pages/account-settings-account"
     },
     {
       "name": "Account Settings - Security",
       "icon": "bx-shield",
-      "url": "pages-account-settings-security.html"
+      "url": "pages/account-settings-security"
     },
     {
       "name": "Account Settings - Billing & Plans",
       "icon": "bx-file",
-      "url": "pages-account-settings-billing.html"
+      "url": "pages/account-settings-billing"
     },
     {
       "name": "Account Settings - Notifications",
       "icon": "bx-notification",
-      "url": "pages-account-settings-notifications.html"
+      "url": "pages/account-settings-notifications"
     },
     {
       "name": "Account Settings - Connections",
       "icon": "bxl-google",
-      "url": "pages-account-settings-connections.html"
+      "url": "pages/account-settings-connections"
     },
     {
       "name": "FAQ",
       "icon": "bx-help-circle",
-      "url": "pages-faq.html"
+      "url": "pages/faq"
     },
     {
       "name": "Help Center Landing",
       "icon": "bx-help-circle",
-      "url": "pages-help-center-landing.html"
+      "url": "pages/help-center-landing"
     },
     {
       "name": "Help Center Categories",
       "icon": "bx-help-circle",
-      "url": "pages-help-center-categories.html"
+      "url": "pages/help-center-categories"
     },
     {
       "name": "Help Center Article",
       "icon": "bx-help-circle",
-      "url": "pages-help-center-article.html"
+      "url": "pages/help-center-article"
     },
     {
       "name": "Pricing",
       "icon": "bx-file",
-      "url": "pages-pricing.html"
+      "url": "pages/pricing"
     },
     {
       "name": "Error",
       "icon": "bx-error-circle",
-      "url": "pages-misc-error.html"
+      "url": "pages/misc-error"
     },
     {
       "name": "Under Maintenance",
       "icon": "bx-first-aid",
-      "url": "pages-misc-under-maintenance.html"
+      "url": "pages/misc-under-maintenance"
     },
     {
       "name": "Coming Soon",
       "icon": "bx-time",
-      "url": "pages-misc-comingsoon.html"
+      "url": "pages/misc-comingsoon"
     },
     {
       "name": "Not Authorized",
       "icon": "bx-user-x",
-      "url": "pages-misc-not-authorized.html"
+      "url": "pages/misc-not-authorized"
     },
     {
       "name": "Login Basic",
       "icon": "bx-log-in",
-      "url": "auth-login-basic.html"
+      "url": "auth/login-basic"
     },
     {
       "name": "Login Cover",
       "icon": "bx-log-in",
-      "url": "auth-login-cover.html"
+      "url": "auth/login-cover"
     },
     {
       "name": "Register Basic",
       "icon": "bx-user-plus",
-      "url": "auth-register-basic.html"
+      "url": "auth/register-basic"
     },
     {
       "name": "Register Cover",
       "icon": "bx-user-plus",
-      "url": "auth-register-cover.html"
+      "url": "auth/register-cover"
     },
     {
       "name": "Register Multi-steps",
       "icon": "bx-user-plus",
-      "url": "auth-register-multisteps.html"
+      "url": "auth/register-multisteps"
     },
     {
       "name": "Verify Email Basic",
       "icon": "bx-envelope",
-      "url": "auth-verify-email-basic.html"
+      "url": "auth/verify-email-basic"
     },
     {
       "name": "Verify Email Cover",
       "icon": "bx-envelope",
-      "url": "auth-verify-email-cover.html"
+      "url": "auth/verify-email-cover"
     },
     {
       "name": "Reset Password Basic",
       "icon": "bx-help-circle",
-      "url": "auth-reset-password-basic.html"
+      "url": "auth/reset-password-basic"
     },
     {
       "name": "Reset Password Cover",
       "icon": "bx-help-circle",
-      "url": "auth-reset-password-cover.html"
+      "url": "auth/reset-password-cover"
     },
     {
       "name": "Forgot Password Basic",
       "icon": "bx-question-mark",
-      "url": "auth-forgot-password-basic.html"
+      "url": "auth/forgot-password-basic"
     },
     {
       "name": "Forgot Password Cover",
       "icon": "bx-question-mark",
-      "url": "auth-forgot-password-cover.html"
+      "url": "auth/forgot-password-cover"
     },
     {
       "name": "Two Steps Verification Basic",
       "icon": "bx-question-mark",
-      "url": "auth-two-steps-basic.html"
+      "url": "auth/two-steps-basic"
     },
     {
       "name": "Two Steps Verification Cover",
       "icon": "bx-question-mark",
-      "url": "auth-two-steps-cover.html"
+      "url": "auth/two-steps-cover"
     },
     {
       "name": "Modal Examples",
       "icon": "bx-window-open",
-      "url": "modal-examples.html"
+      "url": "modal-examples"
     },
     {
       "name": "Checkout Wizard",
       "icon": "bx-cart",
-      "url": "wizard-ex-checkout.html"
+      "url": "wizard/ex-checkout"
     },
     {
       "name": "Property Listing Wizard",
       "icon": "bx-building-house",
-      "url": "wizard-ex-property-listing.html"
+      "url": "wizard/ex-property-listing"
     },
     {
       "name": "Create Deal Wizard",
       "icon": "bx-gift",
-      "url": "wizard-ex-create-deal.html"
+      "url": "wizard/ex-create-deal"
     },
     {
       "name": "Boxicons",
       "icon": "bx-box",
-      "url": "icons-boxicons.html"
+      "url": "icons/boxicons"
     },
     {
       "name": "Font Awesome",
       "icon": "bx-font",
-      "url": "icons-font-awesome.html"
+      "url": "icons/font-awesome"
     },
     {
       "name": "Basic Cards",
       "icon": "bx-credit-card-front",
-      "url": "cards-basic.html"
+      "url": "cards/basic"
     },
     {
       "name": "Advance Cards",
       "icon": "bx-id-card",
-      "url": "cards-advance.html"
+      "url": "cards/advance"
     },
     {
       "name": "Statistics Cards",
       "icon": "bx-bar-chart",
-      "url": "cards-statistics.html"
+      "url": "cards/statistics"
     },
     {
       "name": "Analytics Cards",
       "icon": "bx-bar-chart",
-      "url": "cards-analytics.html"
+      "url": "cards/analytics"
     },
     {
       "name": "Actions Cards",
       "icon": "bx-mouse-alt",
-      "url": "cards-actions.html"
+      "url": "cards/actions"
     },
     {
       "name": "Accordion",
       "icon": "bx-collapse",
-      "url": "ui-accordion.html"
+      "url": "ui/accordion"
     },
     {
       "name": "Alerts",
       "icon": "bx-error",
-      "url": "ui-alerts.html"
+      "url": "ui/alerts"
     },
     {
       "name": "Badges",
       "icon": "bx-badge",
-      "url": "ui-badges.html"
+      "url": "ui/badges"
     },
     {
       "name": "Buttons",
       "icon": "bx-plus-circle",
-      "url": "ui-buttons.html"
+      "url": "ui/buttons"
     },
     {
       "name": "Carousel",
       "icon": "bx-image",
-      "url": "ui-carousel.html"
+      "url": "ui/carousel"
     },
     {
       "name": "Collapse",
       "icon": "bx-collapse",
-      "url": "ui-collapse.html"
+      "url": "ui/collapse"
     },
     {
       "name": "Dropdowns",
       "icon": "bx-archive-in",
-      "url": "ui-dropdowns.html"
+      "url": "ui/dropdowns"
     },
     {
       "name": "Footer",
       "icon": "bx-dock-bottom",
-      "url": "ui-footer.html"
+      "url": "ui/footer"
     },
     {
       "name": "List Groups",
       "icon": "bx-list-ol",
-      "url": "ui-list-groups.html"
+      "url": "ui/list-groups"
     },
     {
       "name": "Modals",
       "icon": "bx-layout",
-      "url": "ui-modals.html"
+      "url": "ui/modals"
     },
     {
       "name": "Navbar",
       "icon": "bx-dock-top",
-      "url": "ui-navbar.html"
+      "url": "ui/navbar"
     },
     {
       "name": "Offcanvas",
       "icon": "bx-layout",
-      "url": "ui-offcanvas.html"
+      "url": "ui/offcanvas"
     },
     {
       "name": "Pagination &amp; Breadcrumbs",
       "icon": "bx-chevrons-right",
-      "url": "ui-pagination-breadcrumbs.html"
+      "url": "ui/pagination-breadcrumbs"
     },
     {
       "name": "Progress",
       "icon": "bx-slider",
-      "url": "ui-progress.html"
+      "url": "ui/progress"
     },
     {
       "name": "Spinners",
       "icon": "bx-loader-circle",
-      "url": "ui-spinners.html"
+      "url": "ui/spinners"
     },
     {
       "name": "Tabs &amp; Pills",
       "icon": "bx-server",
-      "url": "ui-tabs-pills.html"
+      "url": "ui/tabs-pills"
     },
     {
       "name": "Toasts",
       "icon": "bx-message-alt-dots",
-      "url": "ui-toasts.html"
+      "url": "ui/toasts"
     },
     {
       "name": "Tooltips &amp; Popovers",
       "icon": "bx-message-alt-dots",
-      "url": "ui-tooltips-popovers.html"
+      "url": "ui/tooltips-popovers"
     },
     {
       "name": "Typography",
       "icon": "bx-font",
-      "url": "ui-typography.html"
+      "url": "ui/typography"
     },
     {
       "name": "Avatar",
       "icon": "bx-user-circle",
-      "url": "extended-ui-avatar.html"
+      "url": "extended/ui-avatar"
     },
     {
       "name": "BlockUI",
       "icon": "bx-fullscreen",
-      "url": "extended-ui-blockui.html"
+      "url": "extended/ui-blockui"
     },
     {
       "name": "Drag &amp; Drop",
       "icon": "bx-copy-alt",
-      "url": "extended-ui-drag-and-drop.html"
+      "url": "extended/ui-drag-and-drop"
     },
     {
       "name": "Media Player",
       "icon": "bx-music",
-      "url": "extended-ui-media-player.html"
+      "url": "extended/ui-media-player"
     },
     {
       "name": "Perfect Scrollbar",
       "icon": "bx-move-vertical",
-      "url": "extended-ui-perfect-scrollbar.html"
+      "url": "extended/ui-perfect-scrollbar"
     },
     {
       "name": "Star Ratings",
       "icon": "bx-star",
-      "url": "extended-ui-star-ratings.html"
+      "url": "extended/ui-star-ratings"
     },
     {
       "name": "SweetAlert2",
       "icon": "bx-error",
-      "url": "extended-ui-sweetalert2.html"
+      "url": "extended/ui-sweetalert2"
     },
     {
       "name": "Text Divider",
       "icon": "bx-vertical-center",
-      "url": "extended-ui-text-divider.html"
+      "url": "extended/ui-text-divider"
     },
     {
       "name": "Timeline Basic",
       "icon": "bx-move-horizontal",
-      "url": "extended-ui-timeline-basic.html"
+      "url": "extended/ui-timeline-basic"
     },
     {
       "name": "Timeline Fullscreen",
       "icon": "bx-move-horizontal",
-      "url": "extended-ui-timeline-fullscreen.html"
+      "url": "extended/ui-timeline-fullscreen"
     },
     {
       "name": "Tour",
       "icon": "bx-paper-plane",
-      "url": "extended-ui-tour.html"
+      "url": "extended/ui-tour"
     },
     {
       "name": "Treeview",
       "icon": "bx-git-repo-forked bx-rotate-180",
-      "url": "extended-ui-treeview.html"
+      "url": "extended/ui-treeview"
     },
     {
       "name": "Miscellaneous",
       "icon": "bx-sitemap",
-      "url": "extended-ui-misc.html"
+      "url": "extended/ui-misc"
     },
     {
       "name": "Basic Inputs",
       "icon": "bx-receipt",
-      "url": "forms-basic-inputs.html"
+      "url": "forms/basic-inputs"
     },
     {
       "name": "Input groups",
       "icon": "bx-book-content",
-      "url": "forms-input-groups.html"
+      "url": "forms/input-groups"
     },
     {
       "name": "Custom Options",
       "icon": "bx-circle",
-      "url": "forms-custom-options.html"
+      "url": "forms/custom-options"
     },
     {
       "name": "Editors",
       "icon": "bx-select-multiple",
-      "url": "forms-editors.html"
+      "url": "forms/editors"
     },
     {
       "name": "File Upload",
       "icon": "bx-toggle-left",
-      "url": "forms-file-upload.html"
+      "url": "forms/file-upload"
     },
     {
       "name": "Pickers",
       "icon": "bx-edit",
-      "url": "forms-pickers.html"
+      "url": "forms/pickers"
     },
     {
       "name": "Select &amp; Tags",
       "icon": "bx-upload",
-      "url": "forms-selects.html"
+      "url": "forms/selects"
     },
     {
       "name": "Sliders",
       "icon": "bx-plus",
-      "url": "forms-sliders.html"
+      "url": "forms/sliders"
     },
     {
       "name": "Switches",
       "icon": "bx-slider-alt",
-      "url": "forms-switches.html"
+      "url": "forms/switches"
     },
     {
       "name": "Extras",
       "icon": "bx-plus-circle",
-      "url": "forms-extras.html"
+      "url": "forms/extras"
     },
     {
       "name": "Vertical Form",
       "icon": "bx-file",
-      "url": "form-layouts-vertical.html"
+      "url": "form/layouts-vertical"
     },
     {
       "name": "Horizontal Form",
       "icon": "bx-file",
-      "url": "form-layouts-horizontal.html"
+      "url": "form/layouts-horizontal"
     },
     {
       "name": "Sticky Actions",
       "icon": "bx-file",
-      "url": "form-layouts-sticky.html"
+      "url": "form/layouts-sticky"
     },
     {
       "name": "Numbered Wizard",
       "icon": "bx-dots-horizontal-rounded",
-      "url": "form-wizard-numbered.html"
+      "url": "form/wizard-numbered"
     },
     {
       "name": "Icons Wizard",
       "icon": "bx-dots-horizontal-rounded",
-      "url": "form-wizard-icons.html"
+      "url": "form/wizard-icons"
     },
     {
       "name": "Form Validation",
       "icon": "bx-check",
-      "url": "form-validation.html"
+      "url": "form/validation"
     },
     {
       "name": "Tables",
       "icon": "bx-table",
-      "url": "tables-basic.html"
+      "url": "tables/basic"
     },
     {
       "name": "Datatable Basic",
       "icon": "bx-table",
-      "url": "tables-datatables-basic.html"
+      "url": "tables/datatables-basic"
     },
     {
       "name": "Datatable Advanced",
       "icon": "bx-table",
-      "url": "tables-datatables-advanced.html"
+      "url": "tables/datatables-advanced"
     },
     {
       "name": "Datatable Extensions",
       "icon": "bx-table",
-      "url": "tables-datatables-extensions.html"
+      "url": "tables/datatables-extensions"
     },
     {
       "name": "Apex Charts",
       "icon": "bx-line-chart",
-      "url": "charts-apex.html"
+      "url": "charts/apex"
     },
     {
       "name": "ChartJS",
       "icon": "bx-bar-chart",
-      "url": "charts-chartjs.html"
+      "url": "charts/chartjs"
     },
     {
       "name": "Leaflet Maps",
       "icon": "bx-ma-alt",
-      "url": "maps-leaflet.html"
+      "url": "maps/leaflet"
     }
   ],
   "files": [
@@ -594,63 +604,63 @@
       "subtitle": "By William Budd",
       "src": "img/icons/misc/search-jpg.png",
       "meta": "35kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Class Notes",
       "subtitle": "By Laurel Lance",
       "src": "img/icons/misc/search-doc.png",
       "meta": "153kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Receipt",
       "subtitle": "By Donnie Darko",
       "src": "img/icons/misc/search-jpg.png",
       "meta": "25kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Social Guide",
       "subtitle": "By Ryan Middleton",
       "src": "img/icons/misc/search-doc.png",
       "meta": "39kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Expenses",
       "subtitle": "By Slade Wilson",
       "src": "img/icons/misc/search-xls.png",
       "meta": "15kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Documentation",
       "subtitle": "By Walter White",
       "src": "img/icons/misc/search-doc.png",
       "meta": "200kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Avatar",
       "subtitle": "By Ross Geller",
       "src": "img/icons/misc/search-jpg.png",
       "meta": "100kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Data",
       "subtitle": "By Erik Foreman",
       "src": "img/icons/misc/search-xls.png",
       "meta": "5kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     },
     {
       "name": "Gardening Guide",
       "subtitle": "By Jerry Seinfeld",
       "src": "img/icons/misc/search-doc.png",
       "meta": "25kb",
-      "url": "app-file-manager.html"
+      "url": "javascript:;"
     }
   ],
   "members": [
@@ -658,43 +668,43 @@
       "name": "John Doe",
       "subtitle": "Admin",
       "src": "img/avatars/1.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "Micheal Clarke",
       "subtitle": "Customer",
       "src": "img/avatars/2.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "Melina Gibson",
       "subtitle": "Staff",
       "src": "img/avatars/5.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "Anna Strong",
       "subtitle": "Staff",
       "src": "img/avatars/7.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "Stephanie Gould",
       "subtitle": "Customer",
       "src": "img/avatars/3.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "David Budd",
       "subtitle": "Admin",
       "src": "img/avatars/10.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     },
     {
       "name": "Mark Shepiro",
       "subtitle": "Admin",
       "src": "img/avatars/12.png",
-      "url": "app-user-view-account.html"
+      "url": "app/user/view/account"
     }
   ]
 }

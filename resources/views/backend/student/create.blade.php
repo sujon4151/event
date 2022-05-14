@@ -1,5 +1,13 @@
 @extends('layouts.main')
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/pickr/pickr-themes.css') }}" />
+@endsection
 @section('content')
     <!-- Content wrapper -->
     <div class="content-wrapper">
@@ -122,7 +130,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label" for="valo_video_date">Video date </label>
-                                <input type="text" id="valo_video_date" name="valo_video_date"
+                                <input type="text" id="flatpickr-datetime" name="valo_video_date"
                                     class="form-control dob-picker" placeholder="YYYY-MM-DD" />
                             </div>
                             <div class="col-md-7">
@@ -206,5 +214,19 @@
     </div>
     <!-- Content wrapper -->
     <!-- Page JS -->
-    <script src="admin/assets/js/form-layouts.js"></script>
+@endsection
+@section('js')
+    <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/pickr/pickr.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/forms-pickers.js') }}"></script> --}}
+    <script>
+        $('.dob-picker').flatpickr({
+            enableTime: false,
+            dateFormat: 'Y-m-d '
+        });
+    </script>
 @endsection

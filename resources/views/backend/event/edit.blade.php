@@ -1,5 +1,13 @@
 @extends('layouts.main')
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/admin/assets/vendor/libs/pickr/pickr-themes.css') }}" />
+@endsection
 @section('content')
     <!-- Content wrapper -->
     <div class="content-wrapper">
@@ -25,8 +33,72 @@
                                 <input type="text" name="date" id="date" value="{{ old('date', $event->date) }}"
                                     class="form-control dob-picker" placeholder="YYYY-MM-DD" />
                             </div>
+                            <div id="repeater">
+                                <div class="btn btn-primary repeater-add-btn" type="button">
+                                    Add More Prices
+                                </div>
 
-                            <div class="col-md-5">
+                                <!-- Repeater Items -->
+                                @foreach (json_decode($event->price_type) as $key => $item)
+                                    <div class="itemsx" data-group="price">
+                                        <!-- Repeater Content -->
+                                        <div class="item-content row mt-2">
+                                            <div class="form-group col-md-5">
+                                                <label class="form-label" for="price_type">Price Type</label>
+                                                <input type="text" class="form-control" placeholder="Price For Jump"
+                                                    name="price_type[{{ $key }}]" value="{{ $item }}"
+                                                    data-name="price_type">
+                                            </div>
+                                            <div class="form-group col-md-5">
+                                                <label class="form-label">Price</label>
+                                                <input type="text" class="form-control" placeholder="Price"
+                                                    name="price[{{ $key  }}]"
+                                                    value="{{ json_decode($event->price)[$key] }}" data-name="price">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="pull-right repeater-remove-btn" style="margin-top:20px">
+                                                    <button id="remove-btn" class="btn btn-danger"
+                                                        onclick="$(this).parents('.itemsx').remove()">
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mb-2"></div>
+                                    </div>
+                                @endforeach
+                                <div class="items" data-group="price">
+                                    <!-- Repeater Content -->
+                                    <div class="item-content row mt-2">
+                                        <div class="form-group col-md-5">
+                                            <label class="form-label" for="price_type">Price Type</label>
+                                            <input type="text" class="form-control"  placeholder="Price For Jump"
+                                                data-name="price_type">
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label class="form-label">Price</label>
+                                            <input type="text" class="form-control"  placeholder="Price"
+                                                data-name="price">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="pull-right repeater-remove-btn" style="margin-top:20px">
+                                                <button id="remove-btn" class="btn btn-danger"
+                                                    onclick="$(this).parents('.items').remove()">
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-2"></div>
+                                </div>
+
+                            </div>
+
+                            {{-- <div class="col-md-5">
                                 <label class="form-label" for="price_type">Price Type</label>
                                 <select id="price_type" name="price_type" class="select2 form-select"
                                     data-allow-clear="true" required>
@@ -46,7 +118,7 @@
                                 <label class="form-label" for="price">Price</label>
                                 <input type="text" name="price" id="price" value="{{ old('price', $event->price) }}"
                                     class="form-control" placeholder="price" />
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-5">
                                 <label class="form-label" for="description">Description </label>
@@ -73,4 +145,63 @@
     <!-- Content wrapper -->
     <!-- Page JS -->
     <script src="admin/assets/js/form-layouts.js"></script>
+@endsection
+@section('js')
+{{-- // var key = "{{ count(json_decode($event->price_type)) }}"; --}}
+
+    <script>
+      jQuery.fn.extend({
+            createRepeater: function() {
+                var addItem = function(items, key) {
+                    var itemContent = items;
+                    var group = itemContent.data("group");
+                    var item = itemContent;
+                    var input = item.find('input,select');
+                    input.each(function(index, el) {
+                        var attrName = $(el).data('name');
+                        var skipName = $(el).data('skip-name');
+                        if (skipName != true) {
+                            $(el).attr("name", attrName + "[" + key + "]" );
+                        } else {
+                            if (attrName != 'undefined') {
+                                $(el).attr("name", attrName);
+                            }
+                        }
+                    })
+                    var itemClone = items;
+                    $("<div class='items'>" + itemClone.html() + "<div/>").appendTo(repeater);
+                };
+                /* find elements */
+                var repeater = this;
+                var items = repeater.find(".items ");
+                var key = "{{ count(json_decode($event->price_type)) }}";
+                var addButton = $('.repeater-add-btn');
+                var newItem = items;
+                if (key == "{{ count(json_decode($event->price_type)) }}") {
+                    items.remove();
+                    addItem(newItem, key);
+                }
+
+                /* handle click and add items */
+                addButton.on("click", function() {
+                    key++;
+                    addItem(newItem, key);
+                });
+            }
+        });
+        $("#repeater").createRepeater();
+    </script>
+    <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}">
+    </script>
+    <script src="{{ asset('admin/assets/vendor/libs/pickr/pickr.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/js/forms-pickers.js') }}"></script> --}}
+    <script>
+        $('.dob-picker').flatpickr({
+            enableTime: false,
+            dateFormat: 'Y-m-d '
+        });
+    </script>
 @endsection

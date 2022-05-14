@@ -44,14 +44,23 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $event->date }}</td>
                                         <td>{{ $event->name }}</td>
-                                        <td><?php if ($event->price_type == 1) {
-                                            echo '<span class="badge bg-label-primary me-1">Price for jump</span> ';
-                                        } elseif ($event->price_type == 2) {
-                                            echo '<span class="badge bg-label-info me-1">Price for sprint</span> ';
-                                        } elseif ($event->price_type == 3) {
-                                            echo '<span class="badge bg-label-success me-1"> Price for both </span> ';
-                                        } ?></td>
-                                        <td>{{ $event->price }}</td>
+                                        <td>
+
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table table-bordered">
+                                                    <thead >
+                                                        @foreach (json_decode($event->price_type) as $key => $item)
+                                                            <tr>
+                                                                <th>{{ $item }}</th>
+                                                                <th>{{ json_decode($event->price)[$key] }}</th>
+                                                            </tr>
+                                                        @endforeach
+                                                    </thead>
+                                                   
+                                                </table>
+                                            </div>
+
+                                        
                                         <td>{{ $event->description }}</td>
                                         <td>
                                             <form action="{{ route('event.destroy', $event->id) }}" method="post">
