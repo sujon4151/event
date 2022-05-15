@@ -4,14 +4,14 @@
     <section id="CommonBanner" class="banner-events">
         <div class="content text-center text-white">
             <div class="container">
-                <h1 class="text-uppercase mb-3">upcoming events</h1>
-                <p><em>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</em></p>
+                <h1 class="text-uppercase mb-3">{{ $pageInfo[0]->name }}</h1>
+                <p><em>{{ $pageInfo[0]->title }}</em></p>
             </div>
         </div>
     </section>
     <section class="upcoming-event-section py-5">
         <div class="container">
-            <h2 class="title title-2 text-secondary pb-3 mb-4">upcoming events</h2>
+            <h2 class="title title-2 text-secondary pb-3 mb-4">{{ $pageInfo[0]->header }}</h2>
 
             <div class="table-responsive">
                 <table class="table upcoming-events-table">

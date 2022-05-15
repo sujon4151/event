@@ -22,15 +22,11 @@ class StudentController extends Controller
                 $students->orderBy($request->desc, 'DESC');
             }
             if ($request->state) {
-                $students->whereRaw('LOWER(`state`) LIKE ? ',[trim(strtolower($request->state)).'%']);
-
-               
+                $students->whereRaw('LOWER(`state`) LIKE ? ', [trim(strtolower($request->state)) . '%']);
             }
             if ($request->school_level) {
-                $students->where('school_level',$request->school_level);
+                $students->where('school_level', $request->school_level);
             }
-
-           
         }
         $students = $students->paginate(10);
 
@@ -55,6 +51,11 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         Students::create([
             'name' => $request->name,
             'age' => $request->age,
@@ -84,7 +85,7 @@ class StudentController extends Controller
             'resistance_video' => $request->resistance_video,
             'resistance_video_date' => $request->resistance_video_date,
             'description' => $request->description,
-
+            'image' => $request->image->store('assets/upload/player'),
         ]);
 
         return redirect()->route('student.index')->with('message', 'Player Added Successfully');
@@ -123,7 +124,7 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
 
-        $stu = Students::where('id', '=', $id)->first();
+        $stu = Students::find($id);
         $stu->name      = $request['name'];
         $stu->age       = $request['age'];
         $stu->height    = $request['height'];
@@ -152,6 +153,10 @@ class StudentController extends Controller
         $stu->resistance_video = $request['resistance_video'];
         $stu->resistance_video_date = $request['resistance_video_date'];
         $stu->description = $request['description'];
+        if ($request->hasFile('image')) {
+            $stu->image      = $request->image->store('assets/upload/player');
+        }
+
         $stu->save();
         return redirect()->route('student.index')->with('message', 'User Updated Successfully');
     }

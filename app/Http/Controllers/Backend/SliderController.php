@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
+use App\Models\Sliders;
 
-class NewsController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
-        return view('backend.news.index', compact('news'));
+        $slider = Sliders::all();
+        return view('backend.slider.index', compact('slider'));
     }
 
     /**
@@ -26,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('backend.news.create');
+        return view('backend.slider.create');
     }
 
     /**
@@ -42,14 +42,15 @@ class NewsController extends Controller
         ]);
 
 
-        News::create([
+        Sliders::create([
             'title' => $request->title,
+            'link' => $request->link,
+            'button_name' => $request->button_name,
             'description' => $request->description,
-            'image' => $request->image->store('assets/upload/news'),
-            'is_featured' => $request->is_featured ? true : false,
+            'image' => $request->image->store('assets/upload/slider'),
         ]);
 
-        return redirect()->route('news.index')->with('message', 'News Added Successfully');
+        return redirect()->route('slider.index')->with('message', 'Slider Added Successfully');
     }
 
     /**
@@ -71,8 +72,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::find($id);
-        return view('backend.news.edit', compact('news'));
+        $slider = Sliders::find($id);
+        return view('backend.slider.edit', compact('slider'));
     }
 
     /**
@@ -84,16 +85,17 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $news = News::find($id);
-        $news->title      = $request['title'];
-        if ($request->hasFile('image')) {
-            $news->image      = $request->image->store('assets/upload/news');
-        }
+        $slider = Sliders::find($id);
+        $slider->title      = $request->title;
+        $slider->link      = $request->link;
+        $slider->button_name      = $request->button_name;
 
-        $news->is_featured = $request->is_featured ? true : false;
-        $news->description = $request['description'];
-        $news->save();
-        return redirect()->route('news.index')->with('message', 'News Updated Successfully');
+        if ($request->hasFile('image')) {
+            $slider->image      = $request->image->store('assets/upload/slider');
+        }
+        $slider->description = $request->description;
+        $slider->save();
+        return redirect()->route('slider.index')->with('message', 'Slider Updated Successfully');
     }
 
     /**
@@ -102,9 +104,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Sliders $slider)
     {
-        $news->delete();
-        return redirect()->route('news.index')->with('message', 'News Deleted Successfully');
+        $slider->delete();
+        return redirect()->route('slider.index')->with('message', 'Slider Deleted Successfully');
     }
 }

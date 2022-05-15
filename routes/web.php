@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\LeaderboardController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\PagesController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\FrontendController;
 
 /*
@@ -37,4 +39,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('student', StudentController::class);
 Route::resource('event', EventController::class);
 Route::resource('news', NewsController::class);
+Route::resource('page', PagesController::class);
+Route::resource('slider', SliderController::class);
 Route::get('leaderboard/{type}', [LeaderboardController::class, 'index'])->name('leaderboard.index');

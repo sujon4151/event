@@ -9,79 +9,37 @@
                 <li data-target="#HomeBanner" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active position-relative">
-                    <!-- overlay -->
-                    <div class="overlay"></div>
-                    <!-- overlay -->
 
-                    <!-- banner img  -->
-                    <img class="d-block w-100 banner-img" src="/frontend/images/home-banner-slide.png" alt="First slide">
-                    <!-- banner img ends -->
-                    <!-- banner content  -->
-                    <div class="content position-absolute">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 text-white">
-                                    <h1 class="mb-2">Lorem Ipsum has be en the indu stry's standard dum's
-                                        standard dum dumdum</h1>
-                                    <p class="mb-4">Lorem Ipsum has been the industry's standard dummy
-                                        text ever since the 1500s</p>
-                                    <a href="#" class="btn btn-secondary">Leader board</a>
+                @foreach ($sliders as $slider)
+                    <div class="carousel-item <?php if ($loop->iteration == 1) {
+    echo 'active';
+} else {
+    echo '';
+} ?> position-relative">
+                        <!-- overlay -->
+                        <div class="overlay"></div>
+                        <!-- overlay -->
+
+                        <!-- banner img  -->
+                        <img class="d-block w-100 banner-img" src="{{ $slider->image }}" alt="First slide">
+                        <!-- banner img ends -->
+                        <!-- banner content  -->
+                        <div class="content position-absolute">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8 text-white">
+                                        <h1 class="mb-2">{{ $slider->title }}</h1>
+                                        <p class="mb-4">{{ $slider->description }}</p>
+                                        <a href="{{ $slider->link }}"
+                                            class="btn btn-secondary">{{ $slider->button_name }}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- banner content  ends-->
+                        <!-- banner content  ends-->
 
-                </div>
-                <div class="carousel-item position-relative">
-                    <!-- overlay -->
-                    <div class="overlay"></div>
-                    <!-- overlay -->
-
-                    <!-- banner img  -->
-                    <img class="d-block w-100 banner-img" src="/frontend/images/home-banner-slide.png" alt="First slide">
-                    <!-- banner img ends -->
-                    <!-- banner content  -->
-                    <div class="content position-absolute">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 text-white">
-                                    <h1 class="mb-2">Lorem Ipsum has be en the indu stry's standard dum's
-                                        standard dum dumdum</h1>
-                                    <p class="mb-4">Lorem Ipsum has been the industry's standard dummy
-                                        text ever since the 1500s</p>
-                                    <a href="#" class="btn btn-secondary">Leader board</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <!-- banner content  ends-->
-                </div>
-                <div class="carousel-item position-relative">
-                    <!-- overlay -->
-                    <div class="overlay"></div>
-                    <!-- overlay -->
-
-                    <!-- banner img  -->
-                    <img class="d-block w-100 banner-img" src="/frontend/images/home-banner-slide.png" alt="First slide">
-                    <!-- banner img ends -->
-                    <!-- banner content  -->
-                    <div class="content position-absolute">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8 text-white">
-                                    <h1 class="mb-2">Lorem Ipsum has be en the indu stry's standard dum's
-                                        standard dum dumdum</h1>
-                                    <p class="mb-4">Lorem Ipsum has been the industry's standard dummy
-                                        text ever since the 1500s</p>
-                                    <a href="#" class="btn btn-secondary">Leader board</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- banner content  ends-->
-                </div>
+                @endforeach
             </div>
 
 
@@ -90,12 +48,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h2 class="text-primary title pb-2 mb-4">Lorem Ipsum has be en the industry's standard
-                                dum</h2>
+                            <h2 class="text-primary title pb-2 mb-4">{{ $pageInfo[0]->header }}</h2>
                             <div class="row events-list">
                                 @foreach ($news as $item)
                                     <div class="col-md-6">
-                                        <a href="{{ route('home.viewBlog',$item->id) }}">
+                                        <a href="{{ route('home.viewBlog', $item->id) }}">
                                             <div class="event position-relative  bg-primary">
                                                 <span class="tilted-tag bg-light-2 event-tag position-absolute text-white">
                                                     <span class="text-secondary">Featured</span>
@@ -197,7 +154,7 @@
             <section class="home-video-section">
                 <div class="video-box">
                     <video class="w-100" controls>
-                        <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+                        <source src="{{ $pageInfo[0]->video_link }}" type="video/mp4">
                         <source src="https://www.w3schools.com/tags/movie.ogg" type="video/ogg">
                         Your browser does not support the video tag.
                     </video>
@@ -215,11 +172,11 @@
             <section class="featured-ads py-4">
                 <div class="container">
                     <ul class="d-flex align-items-center justify-content-center featured-ads-list">
-                        <li class="p-2 p-sm-3"><a href="#"><img src="/frontend/images/advertisement-1.png"
+                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_1 }}"
                                     alt="advertisement"></a></li>
-                        <li class="p-2 p-sm-3"><a href="#"><img src="/frontend/images/advertisement-2.png"
+                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_2 }}"
                                     alt="advertisement"></a></li>
-                        <li class="p-2 p-sm-3"><a href="#"><img src="/frontend/images/advertisement-3.png"
+                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_3 }}"
                                     alt="advertisement"></a></li>
                     </ul>
                 </div>

@@ -12,8 +12,9 @@
             <div class="row">
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
-                    <h5 class="card-header">Add News </h5>
-                    <form class="card-body" method="POST" action="{{ route('news.update', $news->id) }}" enctype="multipart/form-data">
+                    <h5 class="card-header">Edit News </h5>
+                    <form class="card-body" method="POST" action="{{ route('news.update', $news->id) }}"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

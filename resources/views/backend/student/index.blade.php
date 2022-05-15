@@ -72,20 +72,19 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Player Photo</th>
                                     <th>Player Name</th>
                                     <th>School Name</th>
                                     <th>School Level</th>
                                     @if (request()->desc == 'top_pitch_velocity')
-                                    <th>Top Velocity</th>
+                                        <th>Top Velocity</th>
                                     @elseif (request()->desc == 'sprit_time')
-                                    <th>SPRINT TIME</th>
+                                        <th>SPRINT TIME</th>
                                     @else
-                                    <th>Top Velocity</th>
-                                    <th>Top Velocity</th>
+                                        <th>Top Velocity</th>
+                                        <th>Top Velocity</th>
                                     @endif
 
-
-                                    <th>State</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -93,7 +92,7 @@
                                 @foreach ($students as $student)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>
+                                        <td><img width="30px;" src="{{ $student->image }}" />
                                             <strong>{{ $student->name }}</strong>
                                         </td>
                                         <td>{{ $student->school_name }}</td>
@@ -109,14 +108,14 @@
                                             } ?>
                                         </td>
                                         @if (request()->desc == 'top_pitch_velocity')
-                                        <td>{{ $student->top_pitch_velocity }}</td>
+                                            <td>{{ $student->top_pitch_velocity }}</td>
                                         @elseif (request()->desc == 'sprit_time')
-                                        <td>{{ $student->sprit_time }}</td> 
+                                            <td>{{ $student->sprit_time }}</td>
                                         @else
-                                        <td>{{ $student->top_pitch_velocity }}</td>
-                                        <td>{{ $student->sprit_time }}</td> 
+                                            <td>{{ $student->top_pitch_velocity }}</td>
+                                            <td>{{ $student->sprit_time }}</td>
                                         @endif
-                                      
+
 
 
                                         <td>{{ $student->state }}</td>

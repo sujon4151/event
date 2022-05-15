@@ -4,8 +4,8 @@
     <section id="CommonBanner" class="banner-blog">
         <div class="content text-center text-white">
             <div class="container">
-                <h1 class="text-uppercase mb-3">Blogs</h1>
-                <p><em>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</em></p>
+                <h1 class="text-uppercase mb-3">{{ $pageInfo[0]->name }}</h1>
+                <p><em>{{ $pageInfo[0]->title }}</em></p>
             </div>
         </div>
     </section>
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <h2 class="text-primary title pb-2 mb-4">Lorem Ipsum has be en the industry's standard dum</h2>
+                    <h2 class="text-primary title pb-2 mb-4">{{ $pageInfo[0]->header }}</h2>
                     <div class="row events-list">
                         <div class="col-md-6">
                             <div class="event position-relative  bg-primary">

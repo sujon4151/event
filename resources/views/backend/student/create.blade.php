@@ -18,7 +18,8 @@
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
                     <h5 class="card-header">Add Athlete </h5>
-                    <form class="card-body" method="POST" action="{{ route('student.store') }}">
+                    <form class="card-body" method="POST" action="{{ route('student.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <h6 class="fw-normal"> Personal Info</h6>
                         <div class="row g-3">
@@ -194,6 +195,11 @@
                                 <label class="form-label" for="description">Description </label>
                                 <textarea type="text" name="description" id="description" class="form-control dob-picker"
                                     placeholder="Write Details"></textarea>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label class="form-label" for="date">Image</label>
+                                <input class="form-control" type="file" id="image" name="image">
                             </div>
 
                         </div>

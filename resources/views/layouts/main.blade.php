@@ -168,20 +168,21 @@
                         </ul>
 
                     </li>
-                    <li class="menu-item {{ request()->is('student/*')||request()->is('student') ? 'open' : '' }}">
+                    <li class="menu-item {{ request()->is('student/*') || request()->is('student') ? 'open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-user-check"></i>
                             <div data-i18n="PLAYERS">PLAYERS</div>
                         </a>
                         <ul class="menu-sub">
 
-                            <li class="menu-item {{Route::currentRouteName()=='student.create'  ? 'active' : '' }}">
+                            <li
+                                class="menu-item {{ Route::currentRouteName() == 'student.create' ? 'active' : '' }}">
                                 <a href="{{ route('student.create') }}" class="menu-link">
                                     <div data-i18n="Add Athlete">Add Athlete </div>
                                 </a>
                             </li>
 
-                            <li class="menu-item {{Route::currentRouteName()=='student.index'  ? 'active' : '' }}">
+                            <li class="menu-item {{ Route::currentRouteName() == 'student.index' ? 'active' : '' }}">
                                 <a href="{{ route('student.index') }}" class="menu-link">
                                     <div data-i18n="Athlete List">Athlete List</div>
                                 </a>
@@ -189,19 +190,19 @@
                         </ul>
                     </li>
 
-                    <li class="menu-item {{ request()->is('event/*') ||request()->is('event') ? 'open' : '' }}">
+                    <li class="menu-item {{ request()->is('event/*') || request()->is('event') ? 'open' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-detail"></i>
                             <div data-i18n="EVENTS">EVENTS</div>
                         </a>
                         <ul class="menu-sub">
-                                <li class="menu-item {{Route::currentRouteName()=='event.create'  ? 'active' : '' }}">
-                                    <a href="{{ route('event.create') }}" class="menu-link">
+                            <li class="menu-item {{ Route::currentRouteName() == 'event.create' ? 'active' : '' }}">
+                                <a href="{{ route('event.create') }}" class="menu-link">
                                     <div data-i18n="Add Event">Add Event </div>
                                 </a>
                             </li>
 
-                            <li class="menu-item {{Route::currentRouteName()=='event.index' ? 'active' : '' }}">
+                            <li class="menu-item {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}">
                                 <a href="{{ route('event.index') }}" class="menu-link">
                                     <div data-i18n="Event List">Event List</div>
                                 </a>
@@ -222,15 +223,15 @@
                         </a>
                         <ul class="menu-sub">
 
-                            <li class="menu-item {{ Route::currentRouteName()=='news.create' ? 'active' : '' }}">
+                            <li class="menu-item {{ Route::currentRouteName() == 'news.create' ? 'active' : '' }}">
                                 <a href="{{ route('news.create') }}" class="menu-link">
                                     <div data-i18n="Add News">Add News </div>
                                 </a>
                             </li>
 
-                           
-                                <li class="menu-item {{ Route::currentRouteName()=='news.index' ? 'active' : '' }}">
-                                    <a href="{{ route('news.index') }}" class="menu-link">
+
+                            <li class="menu-item {{ Route::currentRouteName() == 'news.index' ? 'active' : '' }}">
+                                <a href="{{ route('news.index') }}" class="menu-link">
                                     <div data-i18n="News List">News List</div>
                                 </a>
                             </li>
@@ -242,16 +243,16 @@
 
                     <!-- Misc -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">SETTINGS</span></li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item {{ Route::currentRouteName() == 'page.index' ? 'active' : '' }}">
+                        <a href="{{ route('page.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-list-check"></i>
-                            <div data-i18n="Site Settings">Site Settings</div>
+                            <div data-i18n="Site Settings">Page Settings</div>
                         </a>
                     </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
+                    <li class="menu-item {{ Route::currentRouteName() == 'slider.index' ? 'active' : '' }}">
+                        <a href="{{ route('slider.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-file"></i>
-                            <div data-i18n="Basic Settings">Basic Settings</div>
+                            <div data-i18n="Basic Settings">Slider </div>
                         </a>
                     </li>
 

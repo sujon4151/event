@@ -18,7 +18,8 @@
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
                     <h5 class="card-header">Edit Athlete </h5>
-                    <form class="card-body" method="POST" action="{{ route('student.update', $user->id) }}">
+                    <form class="card-body" method="POST" action="{{ route('student.update', $user->id) }}"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <h6 class="fw-normal"> Personal Info</h6>
@@ -223,6 +224,12 @@
                                     class="form-control dob-picker"
                                     placeholder="Write Details">{{ old('description', $user->description) }}</textarea>
                             </div>
+
+                            <div class="col-md-5">
+                                <label class="form-label" for="date">Image</label>
+                                <input class="form-control" type="file" id="image" name="image">
+                            </div>
+
                         </div>
 
                         <div class="pt-4">
@@ -246,7 +253,8 @@
     <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}">
+    </script>
     <script src="{{ asset('admin/assets/vendor/libs/jquery-timepicker/jquery-timepicker.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/libs/pickr/pickr.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/js/forms-pickers.js') }}"></script> --}}
