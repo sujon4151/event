@@ -33,6 +33,15 @@
                                 <input type="text" name="date" id="date" value="{{ old('date', $event->date) }}"
                                     class="form-control dob-picker" placeholder="YYYY-MM-DD" />
                             </div>
+                            <div class="col-md-5">
+                                <label class="form-label" for="state"> State</label>
+                                <input type="text" name="state" id="state" class="form-control" placeholder="State" value="{{ old('date', $event->state) }}" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label" for="location"> Location</label>
+                                <input type="text" name="location" id="location" class="form-control" value="{{ old('date', $event->location) }}"
+                                    placeholder="Location/ Address" />
+                            </div>
                             <div id="repeater">
                                 <div class="btn btn-primary repeater-add-btn" type="button">
                                     Add More Prices
@@ -52,7 +61,7 @@
                                             <div class="form-group col-md-5">
                                                 <label class="form-label">Price</label>
                                                 <input type="text" class="form-control" placeholder="Price"
-                                                    name="price[{{ $key  }}]"
+                                                    name="price[{{ $key }}]"
                                                     value="{{ json_decode($event->price)[$key] }}" data-name="price">
                                             </div>
                                             <div class="col-md-2">
@@ -74,13 +83,12 @@
                                     <div class="item-content row mt-2">
                                         <div class="form-group col-md-5">
                                             <label class="form-label" for="price_type">Price Type</label>
-                                            <input type="text" class="form-control"  placeholder="Price For Jump"
+                                            <input type="text" class="form-control" placeholder="Price For Jump"
                                                 data-name="price_type">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label class="form-label">Price</label>
-                                            <input type="text" class="form-control"  placeholder="Price"
-                                                data-name="price">
+                                            <input type="text" class="form-control" placeholder="Price" data-name="price">
                                         </div>
                                         <div class="col-md-2">
                                             <div class="pull-right repeater-remove-btn" style="margin-top:20px">
@@ -147,10 +155,10 @@
     <script src="admin/assets/js/form-layouts.js"></script>
 @endsection
 @section('js')
-{{-- // var key = "{{ count(json_decode($event->price_type)) }}"; --}}
+    {{-- // var key = "{{ count(json_decode($event->price_type)) }}"; --}}
 
     <script>
-      jQuery.fn.extend({
+        jQuery.fn.extend({
             createRepeater: function() {
                 var addItem = function(items, key) {
                     var itemContent = items;
@@ -161,7 +169,7 @@
                         var attrName = $(el).data('name');
                         var skipName = $(el).data('skip-name');
                         if (skipName != true) {
-                            $(el).attr("name", attrName + "[" + key + "]" );
+                            $(el).attr("name", attrName + "[" + key + "]");
                         } else {
                             if (attrName != 'undefined') {
                                 $(el).attr("name", attrName);

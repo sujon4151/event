@@ -14,5 +14,7 @@ class Events extends Model
         'price_type',
         'price',
         'description',
+        'location',
+        'state'
     ];
 }

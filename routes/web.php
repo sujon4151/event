@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Backend\LeaderboardController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +19,19 @@ use App\Http\Controllers\Backend\NewsController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
 Auth::routes();
+Route::get('/', [FrontendController::class, 'index'])->name('home.index');
+Route::get('/ev', [FrontendController::class, 'events'])->name('home.event');
+Route::get('/ev/{id}', [FrontendController::class, 'viewEvent'])->name('home.viewEvent');
+Route::get('/players', [FrontendController::class, 'players'])->name('home.players');
+Route::get('/player/profile/{id}', [FrontendController::class, 'playerProfile'])->name('home.playerProfile');
+Route::get('/ld', [FrontendController::class, 'leaderboard'])->name('home.leaderboard');
+Route::get('/blogs', [FrontendController::class, 'blogs'])->name('home.blogs');
+Route::get('/blogs/{is}', [FrontendController::class, 'viewBlogs'])->name('home.viewBlog');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('student', StudentController::class);

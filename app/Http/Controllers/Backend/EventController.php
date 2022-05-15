@@ -40,6 +40,8 @@ class EventController extends Controller
         Events::create([
             'name' => $request->name,
             'date' => $request->date,
+            'state' => $request->state,
+            'location' => $request->location,
             'price_type' => json_encode(array_filter($request->price_type)),
             'price' => json_encode(array_filter($request->price)),
             'description' => $request->description,
@@ -87,6 +89,9 @@ class EventController extends Controller
         $event->price      = json_encode(array_filter($request->price));
         $event->date      = $request['date'];
         $event->description = $request['description'];
+        $event->state = $request['state'];
+        $event->location = $request['location'];
+      
         $event->save();
         return redirect()->route('event.index')->with('message', 'Event Updated Successfully');
     }

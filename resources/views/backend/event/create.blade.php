@@ -18,7 +18,8 @@
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
                     <h5 class="card-header">Add Event </h5>
-                    <form class="card-body" method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data">
+                    <form class="card-body" method="POST" action="{{ route('event.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
 
                         <div class="row g-3">
@@ -31,24 +32,31 @@
                                 <input type="text" name="date" id="date" class="form-control dob-picker"
                                     placeholder="YYYY-MM-DD" />
                             </div>
+                            <div class="col-md-5">
+                                <label class="form-label" for="state"> State</label>
+                                <input type="text" name="state" id="state" class="form-control" placeholder="State" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label" for="location"> Location</label>
+                                <input type="text" name="location" id="location" class="form-control" placeholder="Location/ Address" />
+                            </div>
                             <div id="repeater">
                                 <div class="btn btn-primary repeater-add-btn" type="button">
                                     Add More Prices
                                 </div>
-                            
+
                                 <!-- Repeater Items -->
                                 <div class="items" data-group="price">
                                     <!-- Repeater Content -->
                                     <div class="item-content row mt-2">
                                         <div class="form-group col-md-5">
                                             <label class="form-label" for="price_type">Price Type</label>
-                                            <input type="text" class="form-control"  placeholder="Price For Jump"
+                                            <input type="text" class="form-control" placeholder="Price For Jump"
                                                 data-name="price_type">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label class="form-label">Price</label>
-                                            <input type="text" class="form-control"  placeholder="Price"
-                                                data-name="price">
+                                            <input type="text" class="form-control" placeholder="Price" data-name="price">
                                         </div>
                                         <div class="col-md-2">
                                             <div class="pull-right repeater-remove-btn" style="margin-top:20px">
@@ -118,7 +126,7 @@
                         var attrName = $(el).data('name');
                         var skipName = $(el).data('skip-name');
                         if (skipName != true) {
-                            $(el).attr("name", attrName + "[" + key + "]" );
+                            $(el).attr("name", attrName + "[" + key + "]");
                         } else {
                             if (attrName != 'undefined') {
                                 $(el).attr("name", attrName);

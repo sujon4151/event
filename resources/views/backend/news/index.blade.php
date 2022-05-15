@@ -32,7 +32,7 @@
                                     <th>SL</th>
                                     <th>Heading</th>
                                     <th>Featured </th>
-                                    <th>Description</th>
+                                    {{-- <th>Description</th> --}}
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -47,7 +47,7 @@
                                             echo '<span class="badge bg-label-info me-1">Yes</span> ';
                                         } ?></td>
 
-                                        <td>{{ $n->description }}</td>
+                                        {{-- <td>{{ $n->description }}</td> --}}
                                         <td>
                                             <form action="{{ route('news.destroy', $n->id) }}" method="post">
                                                 <a href="{{ route('news.edit', $n->id) }}" type="button"

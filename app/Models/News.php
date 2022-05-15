@@ -13,4 +13,14 @@ class News extends Model
         'description',
         'image',
     ];
+    public function next(){
+        // get next user
+        return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
+    
+    }
+    public  function previous(){
+        // get previous  user
+        return News::where('id', '<', $this->id)->orderBy('id','desc')->first();
+    
+    }
 }

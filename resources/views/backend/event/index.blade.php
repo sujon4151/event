@@ -20,9 +20,8 @@
 
                 <div class="card">
                     <h5 class="card-header">Event List
-                        <span style="float: right;"><a href="{{ route('event.create') }}" class="btn btn-sm btn-primary"><i
-                                    class="fa-solid fa-plus"></i> Add
-                                Event</a></span>
+                        <span style="float: right;">
+                            <a href="{{ route('event.create') }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add Event</a></span>
                     </h5>
                     <hr>
                     <div class="table-responsive text-nowrap">
@@ -33,8 +32,7 @@
                                     <th>Date</th>
                                     <th>Name</th>
                                     <th>Price Type</th>
-                                    <th>Price</th>
-                                    <th>Description</th>
+                                   
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -59,9 +57,6 @@
                                                    
                                                 </table>
                                             </div>
-
-                                        
-                                        <td>{{ $event->description }}</td>
                                         <td>
                                             <form action="{{ route('event.destroy', $event->id) }}" method="post">
                                                 <a href="{{ route('event.edit', $event->id) }}" type="button"

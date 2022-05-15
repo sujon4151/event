@@ -37,21 +37,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        if (!empty($request->image)) {
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $imageName = time() . '.' . $request->image->extension();
-
-            $request->image->move(public_path('assets/upload/news'), $imageName);
-        }
 
         News::create([
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imageName,
-            'is_featured' => $request->is_featured,
+            'image' => $request->image->store('assets/upload/news'),
+            'is_featured' => $request->is_featured ? true : false,
         ]);
 
         return redirect()->route('news.index')->with('message', 'News Added Successfully');
@@ -91,8 +86,11 @@ class NewsController extends Controller
     {
         $news = News::where('id', '=', $id)->first();
         $news->title      = $request['title'];
-        $news->image      = $request['image'];
-        $news->is_featured = $request['is_featured'];
+        if ($request->hasFile('image')) {
+            $news->image      = $request->image->store('assets/upload/news');
+        }
+
+        $news->is_featured = $request->is_featured ? true : false;
         $news->description = $request['description'];
         $news->save();
         return redirect()->route('news.index')->with('message', 'News Updated Successfully');

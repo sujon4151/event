@@ -13,7 +13,7 @@
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
                     <h5 class="card-header">Add News </h5>
-                    <form class="card-body" method="POST" action="{{ route('news.update', $news->id) }}">
+                    <form class="card-body" method="POST" action="{{ route('news.update', $news->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -69,6 +69,7 @@
                                                 <span class="ql-formats">
                                                     <button class="ql-header" value="1"></button>
                                                     <button class="ql-header" value="2"></button>
+                                                    <button class="ql-header" value="3"></button>
                                                     <button class="ql-blockquote"></button>
                                                     <button class="ql-code-block"></button>
                                                 </span>
