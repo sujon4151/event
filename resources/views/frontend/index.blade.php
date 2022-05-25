@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+
+@section('title', $pageInfo->title)
+
+
 @section('content')
     <section id="HomeBanner" class="carousel slide" data-ride="carousel">
         <div>
@@ -12,10 +16,10 @@
 
                 @foreach ($sliders as $slider)
                     <div class="carousel-item <?php if ($loop->iteration == 1) {
-    echo 'active';
-} else {
-    echo '';
-} ?> position-relative">
+                        echo 'active';
+                    } else {
+                        echo '';
+                    } ?> position-relative">
                         <!-- overlay -->
                         <div class="overlay"></div>
                         <!-- overlay -->
@@ -48,7 +52,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h2 class="text-primary title pb-2 mb-4">{{ $pageInfo[0]->header }}</h2>
+                            <h2 class="text-primary title pb-2 mb-4">{{ $pageInfo->header }}</h2>
                             <div class="row events-list">
                                 @foreach ($news as $item)
                                     <div class="col-md-6">
@@ -76,7 +80,8 @@
 
 
                             </div>
-                            <h3 class="text-center"> <a href="#" class="text-primary text-uppercase">View All
+                            <h3 class="text-center"> <a href="{{ route('home.blogs') }}"
+                                    class="text-primary text-uppercase">View All
                                     News</a>
                             </h3>
                         </div>
@@ -142,7 +147,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <a href="#" class="btn btn-secondary">Leader board</a>
+                                    <a href="{{ route('home.players') }}" class="btn btn-secondary">Players</a>
                                 </div>
                             </div>
                         </div>
@@ -151,36 +156,113 @@
             </section>
             <!-- athelete Data Section ends  -->
             <!-- home video section -->
+            <style>
+                .modal-dialog {
+                    max-width: 800px;
+                    margin: 30px auto;
+                }
+
+
+
+                .modal-body {
+                    position: relative;
+                    padding: 0px;
+                }
+
+                .close {
+                    position: absolute;
+                    right: -30px;
+                    top: 0;
+                    z-index: 999;
+                    font-size: 2rem;
+                    font-weight: normal;
+                    color: #fff;
+                    opacity: 1;
+                }
+
+            </style>
             <section class="home-video-section">
                 <div class="video-box">
                     <video class="w-100" controls>
-                        <source src="{{ $pageInfo[0]->video_link }}" type="video/mp4">
+                        <source src="{{ $pageInfo->video_link }}" type="video/mp4">
                         <source src="https://www.w3schools.com/tags/movie.ogg" type="video/ogg">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-thumbnail">
-                        <img src="/frontend/images/video-thumbnail.png" alt="video video-thumbnail">
+                        <img src="{{ $pageInfo->banner }} " alt="video video-thumbnail">
                     </div>
-                    <div class="overlay  align-items-center justify-content-center w-100 h-100 position-absolute">
+                    <div class="overlay  align-items-center justify-content-center w-100 h-100 position-absolute"
+                        onclick="openVideo('{{ getYouTubeId($pageInfo->video_link) }}')">
                         <span class="play-btn cursor-pointer">
                             <img src="/frontend/images/play-btn.png" alt="play btn">
                         </span>
                     </div>
                 </div>
             </section>
+
+            {{-- video model --}}
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+
+                        <div class="modal-body">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe width="939" height="528" id="ytplayer" src="{{ $pageInfo->video_link }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                                {{-- <iframe class="embed-responsive-item" src="{{ $pageInfo->video_link }}" id="video"
+                                    allowscriptaccess="always" allow="autoplay"></iframe> --}}
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- end video model --}}
+
+
+
+
+
+
             <!-- home video section -->
             <section class="featured-ads py-4">
                 <div class="container">
                     <ul class="d-flex align-items-center justify-content-center featured-ads-list">
-                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_1 }}"
-                                    alt="advertisement"></a></li>
-                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_2 }}"
-                                    alt="advertisement"></a></li>
-                        <li class="p-2 p-sm-3"><a href="#"><img src="{{ $pageInfo[0]->add_banner_3 }}"
-                                    alt="advertisement"></a></li>
+                        @foreach (json_decode($pageInfo->ads_data) as $item)
+                            <li class="p-2 p-sm-3"><a href="{{ $item->link }}" target="_blank">
+                                    <img src="/{{ $item->image }}" style="height: 250px;" alt="advertisement"></a>
+                            </li>
+                        @endforeach
+
                     </ul>
                 </div>
             </section>
         </div>
     </section>
+@endsection
+@section('js')
+    <script>
+        function openVideo(video) {
+            $('#ytplayer').attr('src', ' https://www.youtube.com/embed/' + video +
+                "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1&amp;controls=0&amp'enablejsapi=1");
+            $("#myModal").modal('show')
+
+
+        }
+        $("#myModal").on('hidden.bs.modal', function() {
+            $('#ytplayer').attr('src', '');
+        });
+    </script>
 @endsection

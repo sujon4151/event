@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Events;
+use App\Models\EventUser;
+use DataTables;
+use Yajra\DataTables\Html\Builder;
 
 class EventController extends Controller
 {
@@ -15,7 +18,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Events::all();
+        if (!request()->type) {
+            return redirect('home');
+        }
+        $events = Events::where('type', request()->type)->get();
         return view('backend.event.index', compact('events'));
     }
 
@@ -26,6 +32,9 @@ class EventController extends Controller
      */
     public function create()
     {
+        if (!request()->type) {
+            return redirect('home');
+        }
         return view('backend.event.create');
     }
 
@@ -39,6 +48,7 @@ class EventController extends Controller
     {
         Events::create([
             'name' => $request->name,
+            'type' => $request->type,
             'date' => $request->date,
             'state' => $request->state,
             'location' => $request->location,
@@ -56,9 +66,39 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Builder $builder, $id)
     {
-        //
+        if (request()->ajax()) {
+            return DataTables::of(EventUser::query()->where('event_id', $id))
+                ->addIndexColumn()
+                ->editColumn('receipt_url', function ($row) {
+                    return "<div class=''>
+                            <a type='button' class='btn btn-sm rounded-pill btn-outline-youtube' target='_blank' href='$row->receipt_url'>
+                             <i class='bx bx-window-open'></i> Open
+                            </a>
+                          </div>";
+                })
+                ->editColumn('created_at', function ($row) {
+                    return $row->created_at->format('d,M yy, h:m:s A');
+                })
+                ->rawColumns(['receipt_url'])
+                ->toJson();
+        }
+        $html = $builder->columns([
+            [
+                'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'SL', 'orderable'      => false,
+                'searchable'     => false,
+                'exportable'     => false,
+                'printable'      => true,
+            ],
+            ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
+            ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
+            ['data' => 'paid_amount', 'name' => 'paid_amount', 'title' => 'Paid Amount'],
+            ['data' => 'paid_for', 'name' => 'paid_for', 'title' => 'Paid For'],
+            ['data' => 'receipt_url', 'name' => 'receipt_url', 'title' => 'receipt_url'],
+            ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Time'],
+        ]);
+        return view('backend.event.view', compact('html'));
     }
 
     /**
@@ -82,7 +122,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+
         $event = Events::find($id);
         $event->name      = $request['name'];
         $event->price_type      = json_encode(array_filter($request->price_type));
@@ -91,7 +131,7 @@ class EventController extends Controller
         $event->description = $request['description'];
         $event->state = $request['state'];
         $event->location = $request['location'];
-      
+
         $event->save();
         return redirect()->route('event.index')->with('message', 'Event Updated Successfully');
     }
@@ -105,6 +145,6 @@ class EventController extends Controller
     public function destroy(Events $event)
     {
         $event->delete();
-        return redirect()->route('event.index')->with('message', 'Event Deleted Successfully');
+        return redirect()->back()->with('message', 'Event Deleted Successfully');
     }
 }

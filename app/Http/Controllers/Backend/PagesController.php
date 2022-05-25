@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pages;
+use App\Models\Settings;
+use Illuminate\Support\Collection;
 
 class PagesController extends Controller
 {
@@ -83,34 +85,58 @@ class PagesController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $page = Pages::find($id);
         $page->name      = $request->name;
         $page->title     = $request->title;
         $page->header    = $request->header;
         $page->video_link    = $request->video_link;
+        $page->content    = $request->content;
 
         if ($request->hasFile('banner')) {
             $page->banner      = $request->banner->store('assets/upload/pages/banner');
         }
-
-        if ($request->hasFile('add_banner_1')) {
-            $page->add_banner_1      = $request->add_banner_1->store('assets/upload/pages/adds');
+        $adsData = new Collection();
+        if ($request->ads_images) {
+            foreach ($request->ads_images as $adImage) {
+                // dd($adImage);
+                if (@is_array(getimagesize($adImage['image']))) {
+                    $adsData->push([
+                        'link' => $adImage['link'],
+                        'image' => $adImage['image']->store('assets/upload/pages/ads')
+                    ]);
+                } else {
+                    $adsData->push(['link' => $adImage['link'], 'image' => $adImage['preimage']]);
+                }
+            }
+            $page->ads_data = json_encode($adsData);
         }
 
-        if ($request->hasFile('add_banner_2')) {
-            $page->add_banner_2      = $request->add_banner_2->store('assets/upload/pages/adds');
-        }
-
-        if ($request->hasFile('add_banner_3')) {
-            $page->add_banner_3      = $request->add_banner_3->store('assets/upload/pages/adds');
-        }
-
-        if ($request->hasFile('add_banner_4')) {
-            $page->add_banner_4     = $request->add_banner_4->store('assets/upload/pages/adds');
-        }
 
         $page->save();
         return redirect()->route('page.index')->with('message', 'Page Updated Successfully');
+    }
+
+    public function siteSettings(Request $request)
+    {
+        $st = Settings::first();
+        if ($request->method() == "POST") {
+            $settings = Settings::findOrNew($request->id);
+            if ($request->hasFile('logo')) {
+                $settings->logo = $request->logo->store('assets/upload/');
+            }
+            if ($request->hasFile('footer_logo')) {
+                $settings->footer_logo = $request->footer_logo->store('assets/upload/');
+            }
+            $settings->footer_logo_link = $request->footer_logo_link;
+            $settings->social_link = json_encode($request->social);
+            $settings->contact = json_encode($request->contact);
+            $settings->powerdby = $request->powerdby;
+            $settings->save();
+            return redirect()->back();
+        }
+
+        return view('backend.settings', compact('st'));
     }
 
     /**

@@ -17,11 +17,11 @@
             <div class="row">
                 <!-- Multi Column with Form Separator -->
                 <div class="card mb-4">
-                    <h5 class="card-header">Add Event </h5>
+                    <h5 class="card-header text-uppercase">Add {{ request()->type }} Event </h5>
                     <form class="card-body" method="POST" action="{{ route('event.store') }}"
                         enctype="multipart/form-data">
                         @csrf
-
+                        <input type="hidden" name="type" value="{{ request()->type }}">
                         <div class="row g-3">
                             <div class="col-md-5">
                                 <label class="form-label" for="name"> Name</label>
@@ -38,7 +38,8 @@
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label" for="location"> Location</label>
-                                <input type="text" name="location" id="location" class="form-control" placeholder="Location/ Address" />
+                                <input type="text" name="location" id="location" class="form-control"
+                                    placeholder="Location/ Address" />
                             </div>
                             <div id="repeater">
                                 <div class="btn btn-primary repeater-add-btn" type="button">
@@ -159,7 +160,8 @@
     <script src="{{ asset('admin/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <script src="{{ asset('admin/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js') }}">
+    </script>
     <script src="{{ asset('admin/assets/vendor/libs/pickr/pickr.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/js/forms-pickers.js') }}"></script> --}}
     <script>

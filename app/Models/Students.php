@@ -9,6 +9,7 @@ class Students extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
         'age',
@@ -19,12 +20,7 @@ class Students extends Model
         'school_name',
         'state',
         'position',
-        'top_pitch_velocity',
-        'average_velocity',
-        'sprit_time',
-        'vertical_jump_height',
-        'hitting_rap',
-        'resistance_ratio',
+
         'velocity_video',
         'valo_video_date',
         'velocity_video2',
@@ -38,4 +34,13 @@ class Students extends Model
         'resistance_video',
         'resistance_video_date',
     ];
+
+    public function statics()
+    {
+        return $this->hasOne(Statics::class, 'student_id')->latest();
+    }
+    public function staticsList()
+    {
+        return $this->hasMany(Statics::class, 'student_id')->latest();
+    }
 }

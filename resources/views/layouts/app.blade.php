@@ -12,7 +12,7 @@
     <meta name="expires" content="never">
     <meta name="rating" content="general">
     <meta name="copyright" content="Company Name">
-    <title>Queer Homes</title>
+    <title>@yield('title')</title>
     <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
@@ -38,6 +38,56 @@
     <link href="/frontend/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/frontend/css/slick.min.css">
     <link rel="stylesheet" href="/frontend/css/slick-theme.min.css">
+    @yield('css')
+    <style>
+        .overlayLoader {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: #22222247;
+            z-index: 120000;
+        }
+
+        .overlay__inner {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .overlay__content {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spinner {
+            width: 75px;
+            height: 75px;
+            display: inline-block;
+            border-width: 2px;
+            border-color: rgba(255, 255, 255, 0.05);
+            border-top-color: #fff;
+            animation: spin 1s infinite linear;
+            border-radius: 100%;
+            border-style: solid;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
 </head>
 
 <body>
@@ -51,8 +101,8 @@
                     <div class="col-lg-8">
                         <ul
                             class="header-top-menu mb-0 w-100 d-flex justify-content-xl-between justify-content-end text-uppercase">
-                            <li><a href="#">Subscribe</a></li>
-                            <li><a href="#">Recommend a Player</a></li>
+                            <li><a href="{{ route('home.subscribe') }}">Subscribe</a></li>
+                            <li><a href="{{ route('home.recommendPlayer') }}">Recommend a Player</a></li>
                             <li><a href="{{ route('home.blogs') }}">News</a></li>
                         </ul>
                     </div>
@@ -78,16 +128,58 @@
                                 <div class="collapse navbar-collapse pt-3 pt-md-0 flex-column" id="Navigation">
                                     <ul class="navbar-nav col-12 p-0 justify-content-end text-uppercase">
                                         <li class="nav-item"><a href="{{ route('home.index') }}"
-                                                class="nav-link active">Home</a>
+                                                class="nav-link {{ Route::currentRouteName() == 'home.index' ? 'active' : '' }}">Home</a>
                                         </li>
-                                        <li class="nav-item"><a href="{{ route('home.event') }}"
-                                                class="nav-link">Events</a></li>
-                                        <li class="nav-item"><a href="{{ route('home.players') }}"
-                                                class="nav-link">Players</a></li>
-                                        <li class="nav-item"><a href="{{ route('home.leaderboard') }}"
-                                                class="nav-link">Leader board</a>
+                                        {{-- <li
+                                            class="nav-item  {{ Route::currentRouteName() == 'home.event' ? 'active' : '' }}">
+                                            <a href="{{ route('home.event') }}" class="nav-link">Events</a>
+                                        </li> --}}
+                                        <li
+                                            class="nav-item dropdown  {{ Route::currentRouteName() == 'home.event' ? 'active' : '' }}">
+                                            <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                Events
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('home.event', 'indivudual') }}">INDIVUDUAL
+                                                    EVENT</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('home.event', 'showcase') }}">SHOWCASE
+                                                    EVENT
+                                                </a>
+
+                                            </div>
                                         </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                                        <li
+                                            class="nav-item  {{ Route::currentRouteName() == 'home.players' ? 'active' : '' }}">
+                                            <a href="{{ route('home.players') }}" class="nav-link">Players</a>
+                                        </li>
+                                        <li
+                                            class="nav-item dropdown  {{ Route::currentRouteName() == 'home.leaderboard' ? 'active' : '' }}">
+                                            <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                Leader board
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('home.leaderboard', 1) }}">High School</a>
+                                                <a class="dropdown-item" href="{{ route('home.leaderboard', 2) }}">4
+                                                    Year College</a>
+                                                <a class="dropdown-item" href="{{ route('home.leaderboard', 3) }}">2
+                                                    Year/JUCO</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('home.leaderboard', 4) }}">Free Agent/Post
+                                                    School</a>
+                                            </div>
+                                        </li>
+
+                                        <li class="nav-item"><a href="{{ route('home.aboutUs') }}"
+                                                class="nav-link">About</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -114,30 +206,37 @@
                 <div class="row justify-content-between">
                     <div class="col-md-4 mb-4 mb-md-0">
                         <div class="footer-logo text-center">
-                            <a href="#">
-                                <img src="/frontend/images/footer-logo.png" alt="footer logo">
+                            <a href="{{ st()->footer_logo_link }}">
+                                <img src="/{{ st()->footer_logo }}" alt="footer logo">
                             </a>
                         </div>
                         <ul
                             class="footer-social-media-links d-flex justify-content-center align-items-center mt-4 mb-0">
-                            <li class="p-2"><a href="#" class="text-secondary"><span
-                                        class="fab fa-facebook"></span></a></li>
-                            <li class="p-2"><a href="#" class="text-secondary"><span
+
+                            @foreach (json_decode(st()->social_link) as $key => $item)
+                                <li class="p-2">
+                                    <a href="{{ $item }}" class="text-secondary">
+                                        <span class="fab fa-{{ $key }}"></span>
+                                    </a>
+                                </li>
+                            @endforeach
+                            {{-- <li class="p-2"><a href="#" class="text-secondary"><span
                                         class="fab fa-twitter"></span></a></li>
                             <li class="p-2"><a href="#" class="text-secondary"><span
                                         class="fab fa-instagram"></span></a></li>
                             <li class="p-2"><a href="#" class="text-secondary"><span
                                         class="fab fa-youtube"></span></a></li>
                             <li class="p-2"><a href="#" class="text-secondary"><span
-                                        class="fab fa-github"></span></a></li>
+                                        class="fab fa-github"></span></a></li> --}}
                         </ul>
                     </div>
                     <div class="col-md-4 col-lg-3 mb-4 mb-md-0">
                         <h3 class="text-primary mb-4">Pages</h3>
                         <ul class="footer-links">
-                            <li class="mb-3"><a href="#">About us</a></li>
-                            <li class="mb-3"><a href="#">Terms & Conditions</a></li>
-                            <li class="mb-3"><a href="#">Privacy Policy</a></li>
+                            <li class="mb-3"><a href="{{ route('home.aboutUs') }}">About us</a></li>
+                            <li class="mb-3"><a href="{{ route('home.tos') }}">Terms & Conditions</a></li>
+                            <li class="mb-3"><a href="{{ route('home.privacyPolicy') }}">Privacy Policy</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4 col-lg-3">
@@ -146,14 +245,14 @@
                             <li class="d-flex align-items-center justify-content-center justify-content-md-start">
                                 <img src="/frontend/images/phone-icon.png" alt="phone-icon" class="mr-2">
                                 <span>
-                                    XXX-XXX-‌‌‌‌‌‌XXXX <br>
+                                    {{ json_decode(st()->contact)->phone }} <br>
                                     Call Us
                                 </span>
                             </li>
                             <li class="d-flex align-items-center justify-content-center justify-content-md-start">
                                 <img src="/frontend/images/mail-icon.png" alt="mail-icon" class="mr-2">
                                 <span>
-                                    XXXXXXXX@gmail.com <br>
+                                    {{ json_decode(st()->contact)->email }} <br>
                                     Email us
                                 </span>
                             </li>
@@ -165,7 +264,7 @@
         </div>
         <div class="copyright bg-primary text-white text-center py-2">
             <div class="container">
-                <p class="mb-0"><em>© ALL RIGHTS RESERVED - PPC 2022</em></p>
+                <p class="mb-0"><em>{{ st()->powerdby }}</em></p>
             </div>
         </div>
 

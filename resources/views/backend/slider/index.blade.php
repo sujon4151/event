@@ -40,7 +40,7 @@
                                 @foreach ($slider as $n)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td><img width="50px;" src="{{ $n->image }}" /></td>
+                                        <td><img width="50px;" src="/{{ $n->image }}" /></td>
                                         <td>{{ $n->title }}</td>
                                         <td>{!! $n->description !!}</td>
 

@@ -21,7 +21,7 @@
                     <form class="card-body" method="POST" action="{{ route('event.update', $event->id) }}">
                         @csrf
                         @method('PUT')
-
+                        <input type="hidden" name="type" value="{{ $event->type }}">
                         <div class="row g-3">
                             <div class="col-md-5">
                                 <label class="form-label" for="name"> Name</label>
@@ -35,12 +35,13 @@
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label" for="state"> State</label>
-                                <input type="text" name="state" id="state" class="form-control" placeholder="State" value="{{ old('date', $event->state) }}" />
+                                <input type="text" name="state" id="state" class="form-control" placeholder="State"
+                                    value="{{ old('date', $event->state) }}" />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label" for="location"> Location</label>
-                                <input type="text" name="location" id="location" class="form-control" value="{{ old('date', $event->location) }}"
-                                    placeholder="Location/ Address" />
+                                <input type="text" name="location" id="location" class="form-control"
+                                    value="{{ old('date', $event->location) }}" placeholder="Location/ Address" />
                             </div>
                             <div id="repeater">
                                 <div class="btn btn-primary repeater-add-btn" type="button">

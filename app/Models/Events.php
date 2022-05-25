@@ -10,6 +10,7 @@ class Events extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'type',
         'date',
         'price_type',
         'price',

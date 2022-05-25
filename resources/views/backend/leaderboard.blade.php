@@ -11,7 +11,7 @@
                 <div class="col-lg-12 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">Top Velocity</h5>
+                            <h5 class="card-title mb-0">Top Pitch Velocity</h5>
 
                         </div>
                         <div class="card-body pb-2">
@@ -22,19 +22,21 @@
                                             <th>POSITION</th>
                                             <th>PLAYER NAME</th>
                                             <th>SCHOOL NAME</th>
-                                            <th>VALOCITY</th>
+                                            <th>Top Pitch Velocity</th>
                                             <th>STATE</th>
 
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        @foreach ($students->orderBy('top_pitch_velocity', 'desc')->get() as $key => $item)
+                                        @foreach ($students->get()->sortByDesc('statics.top_pitch_velocity')->take(15)
+        as $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td><strong>{{ $item->name }}</strong> </td>
                                                 <td>{{ $item->school_name }}</td>
-                                                <td>{{ $item->top_pitch_velocity }}</td>
-                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span></td>
+                                                <td>{{ $item->statics->top_pitch_velocity }}</td>
+                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span>
+                                                </td>
 
 
                                             </tr>
@@ -50,7 +52,7 @@
                 <div class="col-lg-12 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">Top Sprint</h5>
+                            <h5 class="card-title mb-0">Top 40yard Dash Time</h5>
 
                         </div>
                         <div class="card-body pb-2">
@@ -61,19 +63,21 @@
                                             <th>POSITION</th>
                                             <th>PLAYER NAME</th>
                                             <th>SCHOOL NAME</th>
-                                            <th>SPRINT</th>
+                                            <th>Top 40yard Dash Time</th>
                                             <th>STATE</th>
 
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        @foreach ($students->orderBy('sprit_time', 'desc')->get() as $key => $item)
+                                        @foreach ($students->get()->sortBy('statics.40yd_sprint_time')->take(15)
+        as $item)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td><strong>{{ $item->name }}</strong> </td>
                                                 <td>{{ $item->school_name }}</td>
-                                                <td>{{ $item->top_pitch_velocity }}</td>
-                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span></td>
+                                                <td>{{ $item->statics['40yd_sprint_time'] }}</td>
+                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span>
+                                                </td>
 
 
                                             </tr>
@@ -85,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-lg-12 col-md-12 mb-4">
+                <div class="col-lg-12 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Top Exit Valocity</h5>
@@ -96,7 +100,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            
+
                                             <th>POSITION</th>
                                             <th>PLAYER NAME</th>
                                             <th>SCHOOL NAME</th>
@@ -106,26 +110,30 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        <tr>
-                                            <td>1</td>
-                                            <td> <strong>Name</strong>
-                                            </td>
-                                            <td>School Name</td>
-                                            <td>exit Valocity</td>
-                                            <td><span class="badge bg-label-primary me-1">STATE</span></td>
+                                        @foreach ($students->get()->sortByDesc('statics.top_exit_velocity')->take(15)
+        as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td><strong>{{ $item->name }}</strong> </td>
+                                                <td>{{ $item->school_name }}</td>
+                                                <td>{{ $item->statics->top_exit_velocity }}</td>
+                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span>
+                                                </td>
 
-                                        </tr>
+
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div> --}}
-                {{-- <div class="col-lg-12 col-md-12 mb-4">
+                </div>
+                <div class="col-lg-12 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="card-title mb-0">Top Jump Height</h5>
+                            <h5 class="card-title mb-0">Top Vertical Jump Height</h5>
 
                         </div>
                         <div class="card-body pb-2">
@@ -142,24 +150,26 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        @foreach ($students->orderBy('vertical_jump_height', 'desc')->get() as $key => $item)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td><strong>{{ $item->name }}</strong> </td>
-                                            <td>{{ $item->school_name }}</td>
-                                            <td>{{ $item->top_pitch_velocity }}</td>
-                                            <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span></td>
+                                        @foreach ($students->get()->sortByDesc('statics.vertical_jump')->take(15)
+        as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td><strong>{{ $item->name }}</strong> </td>
+                                                <td>{{ $item->school_name }}</td>
+                                                <td>{{ $item->statics->vertical_jump }}</td>
+                                                <td><span class="badge bg-label-primary me-1">{{ $item->state }}</span>
+                                                </td>
 
 
-                                        </tr>
-                                    @endforeach
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
 
                 <!--/ Activity Timeline -->

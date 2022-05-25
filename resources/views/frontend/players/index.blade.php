@@ -1,17 +1,18 @@
 @extends('layouts.app')
+@section('title', $pageInfo->title)
 
 @section('content')
     <section id="CommonBanner" class="banner-player">
         <div class="content text-center text-white">
             <div class="container">
-                <h1 class="text-uppercase mb-3">{{ $pageInfo[0]->name }}</h1>
-                <p><em>{{ $pageInfo[0]->title }}</em></p>
+                <h1 class="text-uppercase mb-3">{{ $pageInfo->name }}</h1>
+                <p><em>{{ $pageInfo->title }}</em></p>
             </div>
         </div>
     </section>
     <section class="view-event-section py-5">
         <div class="container">
-            <h2 class="title  text-primary pb-3 mb-4">{{ $pageInfo[0]->header }}</h2>
+            <h2 class="title  text-primary pb-3 mb-4">{{ $pageInfo->header }}</h2>
 
             <!-- players table  -->
             <div class="table-responsive">
@@ -21,10 +22,10 @@
                             <th scope="col">SL</th>
                             <th scope="col">Player</th>
                             <th scope="col">School</th>
-                            <th scope="col">Pitch velocity</th>
-                            <th scope="col">sprint time</th>
-                            <th scope="col">Exit Velocity</th>
-                            <th scope="col">Jump Velocity</th>
+                            <th scope="col">School lavel</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Height</th>
+                            <th scope="col">Stats</th>
                         </tr>
                     </thead>
                     <tbody class="font-italic">
@@ -41,11 +42,30 @@
                                     </div>
                                 </td>
                                 <td scope="row" class="font-weight-medium text-primary">{{ $item->school_name }}</td>
-                                <td scope="row" class="font-weight-medium text-primary">{{ $item->top_pitch_velocity }}
+                                <td scope="row" class="font-weight-medium text-primary">
+                                    @if ($item->school_level == 1)
+                                        High School
+                                    @elseif($item->school_level == 2)
+                                        4 Year College
+                                    @elseif($item->school_level == 3)
+                                        2 Year/JUCO
+                                    @elseif($item->school_level == 4)
+                                        Free Agent/Post
+                                        School
+                                    @else
+                                    @endif
+
                                 </td>
-                                <td scope="row" class="font-weight-medium text-primary">{{ $item->sprit_time }}</td>
-                                <td scope="row" class="font-weight-medium text-primary">{{ $item->hitting_rap }}</td>
-                                <td scope="row" class="font-weight-medium text-primary">{{ $item->vertical_jump_height }}
+                                <td scope="row" class="font-weight-medium text-primary">{{ $item->age }}
+                                </td>
+                                <td scope="row" class="font-weight-medium text-primary">
+                                    {{ $item->height }}
+                                </td>
+                                <td scope="row" class="font-weight-medium text-primary">
+                                    <a href="{{ route('home.playerProfile', $item->id) }}"
+                                        class="btn btn-primary btn-sm">
+                                        <span>Click To see</span>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -56,32 +76,7 @@
             </div>
             <!-- players table  -->
             <!-- pagiantion  -->
-            <ul class="custom-pagination justify-content-end mt-4">
-                <li><a href="#" class="pagination-link prev disabled">
-                        <svg class="svg-inline--fa fa-angle-left fa-w-8" aria-hidden="true" focusable="false"
-                            data-prefix="fas" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 256 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z">
-                            </path>
-                        </svg><!-- <i class="fas fa-angle-left"></i> -->
-                    </a></li>
-                <li><a href="#" class="pagination-link active">1</a></li>
-                <li><a href="#" class="pagination-link">2</a></li>
-
-                <li><a href="#" class="pagination-link">...</a></li>
-                <li><a href="#" class="pagination-link">9</a></li>
-                <li><a href="#" class="pagination-link">10</a></li>
-                <li><a href="#" class="pagination-link next">
-                        <svg class="svg-inline--fa fa-angle-right fa-w-8" aria-hidden="true" focusable="false"
-                            data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 256 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z">
-                            </path>
-                        </svg><!-- <i class="fas fa-angle-right"></i> -->
-                    </a></li>
-            </ul>
+            {{ $players->links() }}
             <!-- pagiantion  ends-->
 
         </div>

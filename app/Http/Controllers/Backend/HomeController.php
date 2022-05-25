@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Students;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $players = Students::take(10)->get();
+        return view('home', compact('players'));
     }
+    // public function ho
 }

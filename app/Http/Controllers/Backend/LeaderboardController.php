@@ -11,8 +11,9 @@ class LeaderboardController extends Controller
     public function index($type)
     {
         $students = Students::query();
-        $students = $students->where('school_level', $type);
+        $students = $students->where('school_level', $type)->with('statics');
+        // dd($students->get());
 
-        return view('backend.leaderboard',compact('students'));
+        return view('backend.leaderboard', compact('students'));
     }
 }

@@ -19,9 +19,11 @@
                 </div>
 
                 <div class="card">
-                    <h5 class="card-header">Event List
+                    <h5 class="card-header text-uppercase">{{ request()->type }} Event List
                         <span style="float: right;">
-                            <a href="{{ route('event.create') }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add Event</a></span>
+                            <a href="{{ route('event.create') }}?type={{ request()->type }}"
+                                class="btn btn-sm btn-primary"><i class="fa-solid fa-plus"></i> Add {{ request()->type }}
+                                Event</a></span>
                     </h5>
                     <hr>
                     <div class="table-responsive text-nowrap">
@@ -32,7 +34,7 @@
                                     <th>Date</th>
                                     <th>Name</th>
                                     <th>Price Type</th>
-                                   
+
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -46,7 +48,7 @@
 
                                             <div class="table-responsive text-nowrap">
                                                 <table class="table table-bordered">
-                                                    <thead >
+                                                    <thead>
                                                         @foreach (json_decode($event->price_type) as $key => $item)
                                                             <tr>
                                                                 <th>{{ $item }}</th>
@@ -54,13 +56,15 @@
                                                             </tr>
                                                         @endforeach
                                                     </thead>
-                                                   
+
                                                 </table>
                                             </div>
                                         <td>
                                             <form action="{{ route('event.destroy', $event->id) }}" method="post">
                                                 <a href="{{ route('event.edit', $event->id) }}" type="button"
                                                     class="btn btn-sm btn-outline-primary">Edit</a>
+                                                <a href="{{ route('event.show', $event->id) }}" type="button"
+                                                    class="btn btn-sm btn-primary">View Paid User</a>
 
                                                 @csrf
                                                 @method('DELETE')

@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label" for="link"> Button Link</label>
-                                <input type="text" name="link" id="link" class="form-control" placeholder="Link" />
+                                <input type="url" name="link" id="link" class="form-control" placeholder="Link" />
                             </div>
 
                             <div class="col-md-5">

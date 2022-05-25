@@ -42,7 +42,7 @@
                                         <td>{{ $n->name }}</td>
                                         <td>{{ $n->title }}</td>
                                         <td>{{ $n->header }}</td>
-                                        <td> <img width="50px" src="{{ $n->banner }}" alt="banner">
+                                        <td> <img width="50px" src="/{{ $n->banner }}" alt="banner">
                                         </td>
                                         <td>
                                             <a href="{{ route('page.edit', $n->id) }}" type="button"
